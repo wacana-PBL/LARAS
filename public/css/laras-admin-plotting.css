@@ -1,0 +1,875 @@
+/* ==========================================================================
+   LARAS — Plotting Peran Dosen (Admin)
+   Frame acuan: "Plotting Dosen - Admin" 1440 wide
+   Banner 1327x117 @ y141, tabel 1327x530 @ y365, bar simpan 1327x72 @ y915
+   ========================================================================== */
+
+.admp-page {
+    padding-bottom: 73px;
+}
+
+.admp-banner {
+    height: 117px;
+    margin-top: 24px;
+    padding: 0 29px;
+    flex-wrap: nowrap;
+}
+
+.admp-banner .admp-banner__text {
+    min-width: 0;
+}
+
+.admp-banner .adm-banner__text {
+    width: auto;
+    margin-top: 10px;
+}
+
+.admp-banner__pill {
+    width: 217px;
+}
+
+/* Toolbar ----------------------------------------------------------------- */
+
+.admp-list {
+    margin-top: 32px;
+}
+
+.admp-toolbar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    height: 55px;
+}
+
+.admp-toolbar__summary {
+    min-width: 0;
+}
+
+.admp-toolbar__title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #020100;
+}
+
+.admp-toolbar__meta {
+    margin: 4px 0 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #747373;
+}
+
+.admp-toolbar__tools {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 16px;
+}
+
+.admp-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 320px;
+    height: 44px;
+    padding: 0 14px;
+    border: 1px solid #b8b8b8;
+    border-radius: 8px;
+}
+
+.admp-search svg {
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+}
+
+.admp-search input {
+    width: 100%;
+    padding: 0;
+    font-family: inherit;
+    font-size: 14px;
+    color: #020100;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.admp-search input::placeholder {
+    color: #747373;
+}
+
+.admp-filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 190px;
+    height: 44px;
+    padding: 0 14px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #020100;
+    border: 1px solid #b8b8b8;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.admp-filter svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Tabel ------------------------------------------------------------------- */
+
+.admp-table {
+    margin-top: 20px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1px #b8b8b8;
+}
+
+.admp-table__head,
+.admp-row {
+    display: grid;
+    grid-template-columns: 515px 184px 300px 1fr;
+    gap: 24px;
+    align-items: center;
+    padding: 0 24px;
+}
+
+.admp-table__head {
+    height: 46px;
+    background-color: #e0e3e9;
+}
+
+.admp-table__head span {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #747373;
+}
+
+.admp-row {
+    height: 88px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e3e9;
+}
+
+.admp-row--edited {
+    background-color: #fff5e7;
+}
+
+.admp-cell {
+    min-width: 0;
+    margin: 0;
+}
+
+.admp-row__name {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #020100;
+}
+
+.admp-row__nidn {
+    margin: 4px 0 0;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #747373;
+}
+
+.admp-row__role {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #020100;
+}
+
+.admp-row__role--empty {
+    color: #747373;
+}
+
+/* Pilihan peran ----------------------------------------------------------- */
+
+.admp-role {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+    height: 68px;
+    margin: 0;
+    padding: 8px 12px;
+    border: 1px solid #b8b8b8;
+    border-radius: 8px;
+}
+
+.admp-role__legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+}
+
+.admp-role__option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #020100;
+    cursor: pointer;
+}
+
+.admp-role__option input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.admp-role__dot {
+    display: block;
+    flex: 0 0 auto;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #747373;
+    border-radius: 50%;
+}
+
+.admp-role__option input:checked + .admp-role__dot {
+    background-color: #ed7a1c;
+    border-color: #ed7a1c;
+    box-shadow: inset 0 0 0 3px #ffffff;
+}
+
+.admp-role__option input:focus-visible + .admp-role__dot {
+    outline: 2px solid #ed7a1c;
+    outline-offset: 2px;
+}
+
+/* Status ------------------------------------------------------------------ */
+
+.admp-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admp-status__mark {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+}
+
+.admp-status__mark svg {
+    width: 18px;
+    height: 18px;
+}
+
+.admp-status__dot {
+    width: 8px;
+    height: 8px;
+    background-color: #747373;
+    border-radius: 50%;
+}
+
+.admp-status__label {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #747373;
+}
+
+.admp-status--dirty .admp-status__dot {
+    background-color: #ed7a1c;
+}
+
+.admp-status--dirty .admp-status__label {
+    font-weight: 500;
+    color: #ed7a1c;
+}
+
+/* Footer tabel ------------------------------------------------------------ */
+
+.admp-table__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    height: 44px;
+    padding: 0 24px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #747373;
+}
+
+/* Bar simpan -------------------------------------------------------------- */
+
+.admp-save {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    height: 72px;
+    margin-top: 20px;
+    padding: 0 24px;
+    background-color: #e0e3e9;
+    border-radius: 8px;
+}
+
+.admp-save__title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #020100;
+}
+
+.admp-save__meta {
+    margin: 2px 0 0;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #747373;
+}
+
+.admp-save__actions {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 16px;
+}
+
+.admp-btn {
+    height: 40px;
+    padding: 0 20px;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 1.5;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.admp-btn--ghost {
+    font-weight: 500;
+    color: #747373;
+    background-color: #ffffff;
+    border: 1px solid #b8b8b8;
+}
+
+.admp-btn--primary {
+    font-weight: 600;
+    color: #020100;
+    background-color: #ed7a1c;
+    border: none;
+}
+
+.admp-btn--primary:hover {
+    background-color: #d96c14;
+}
+
+/* Responsive -------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+    .admp-page {
+        padding-bottom: 64px;
+    }
+
+    .admp-banner {
+        height: auto;
+        margin-top: 26px;
+        padding: 18px 22px;
+        flex-wrap: wrap;
+    }
+
+    .admp-banner__pill {
+        width: auto;
+    }
+
+    .admp-list {
+        margin-top: 24px;
+    }
+
+    .admp-toolbar {
+        height: auto;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .admp-toolbar__tools {
+        width: 100%;
+        gap: 12px;
+    }
+
+    .admp-search {
+        flex: 1;
+        width: auto;
+    }
+
+    .admp-table {
+        overflow-x: auto;
+    }
+
+    .admp-table__head,
+    .admp-row {
+        grid-template-columns: 260px 120px 200px 150px;
+        gap: 16px;
+        padding: 0 16px;
+        width: max-content;
+        min-width: 100%;
+    }
+
+    .admp-row {
+        height: 96px;
+    }
+
+    .admp-row__name {
+        font-size: 14px;
+    }
+
+    .admp-table__foot {
+        gap: 16px;
+        height: auto;
+        padding: 12px 16px;
+        flex-wrap: wrap;
+    }
+
+    .admp-save {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 18px 20px;
+    }
+
+    .admp-save__actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 760px) {
+    .admp-banner {
+        padding: 16px 18px;
+    }
+
+    .admp-toolbar__tools {
+        flex-wrap: wrap;
+    }
+
+    .admp-filter {
+        width: 100%;
+    }
+
+    .admp-table {
+        overflow: visible;
+        border: none;
+        box-shadow: none;
+    }
+
+    .admp-table__head {
+        display: none;
+    }
+
+    .admp-row {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 10px;
+        width: 100%;
+        height: auto;
+        padding: 16px;
+        border: 1px solid #e0e3e9;
+        border-radius: 8px;
+    }
+
+    .admp-row + .admp-row {
+        margin-top: 12px;
+    }
+
+    .admp-table__foot {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+}
+
+@media (max-width: 420px) {
+    .admp-banner {
+        padding: 14px 16px;
+    }
+
+    .admp-toolbar__title {
+        font-size: 17px;
+    }
+
+    .admp-toolbar__meta,
+    .admp-filter,
+    .admp-search input {
+        font-size: 13px;
+    }
+
+    .admp-btn {
+        flex: 1;
+        padding: 0 12px;
+        font-size: 14px;
+    }
+}
+
+/* ==========================================================================
+   Rubrik penilaian (kartu bawah pada frame Plotting Dosen - Admin)
+   Kartu 1327x678 @ y1047; kolom 723 / 220 / 120 / 120 dengan jarak 16
+   ========================================================================== */
+
+.rub-card {
+    margin-top: 60px;
+    padding: 24px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 1px #e5e7eb;
+}
+
+.rub-summary {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    height: 55px;
+}
+
+.rub-summary__copy {
+    min-width: 0;
+}
+
+.rub-summary__title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #1a1a1a;
+}
+
+.rub-summary__text {
+    margin: 4px 0 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #6b7280;
+}
+
+.rub-summary__chips {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.rub-chip {
+    display: inline-flex;
+    align-items: center;
+    height: 34px;
+    padding: 0 12px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #6b7280;
+    white-space: nowrap;
+    background-color: #e0e3e9;
+    border-radius: 8px;
+}
+
+.rub-chip--accent {
+    font-weight: 600;
+    color: #ed7a1c;
+    background-color: #fff7ed;
+    box-shadow: inset 0 0 0 1px #ed7a1c;
+}
+
+.rub-table {
+    margin-top: 24px;
+}
+
+.rub-table__head,
+.rub-row,
+.rub-add {
+    display: grid;
+    grid-template-columns: 723px 220px 120px 120px;
+    gap: 16px;
+    align-items: center;
+    padding: 0 24px;
+}
+
+.rub-table__head {
+    height: 21px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #747373;
+    background-color: #e0e3e9;
+    border-radius: 8px;
+}
+
+.rub-row {
+    min-height: 60px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 1px #e5e7eb;
+}
+
+.rub-table__head + .rub-row,
+.rub-row + .rub-row {
+    margin-top: 24px;
+}
+
+.rub-row__main {
+    min-width: 0;
+}
+
+.rub-row__name {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #1a1a1a;
+}
+
+.rub-row__text {
+    margin: 4px 0 0;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #6b7280;
+}
+
+.rub-row__desc {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #1a1a1a;
+}
+
+.rub-row__desc--muted {
+    color: #6b7280;
+}
+
+.rub-row__weight,
+.rub-row__action {
+    display: flex;
+}
+
+.rub-weight {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 37px;
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #1a1a1a;
+    background-color: #e0e3e9;
+    border-radius: 8px;
+}
+
+.rub-weight--blank {
+    background-color: #ffffff;
+    box-shadow: inset 0 0 0 1px #b8b8b8;
+}
+
+.rub-edit {
+    height: 36px;
+    padding: 0 12px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #6b7280;
+    background-color: #ffffff;
+    border: 1px solid #b8b8b8;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.rub-add {
+    min-height: 48px;
+    margin-top: 24px;
+    background-color: #fff5e7;
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1px #ed7a1c;
+}
+
+.rub-add__btn {
+    height: 36px;
+    padding: 0 12px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #020100;
+    background-color: #ed7a1c;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.rub-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    height: 78px;
+    margin-top: 24px;
+    padding: 0 24px;
+    background-color: #e0e3e9;
+    border-radius: 8px;
+}
+
+.rub-footer__title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #020100;
+}
+
+.rub-footer__text {
+    margin: 2px 0 0;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #747373;
+}
+
+.rub-footer__actions {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 16px;
+}
+
+.rub-btn {
+    height: 40px;
+    padding: 0 20px;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 1.5;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.rub-btn--ghost {
+    font-weight: 500;
+    color: #747373;
+    background-color: #ffffff;
+    border: 1px solid #b8b8b8;
+}
+
+.rub-btn--primary {
+    font-weight: 600;
+    color: #020100;
+    background-color: #ed7a1c;
+    border: none;
+}
+
+@media (max-width: 1100px) {
+    .rub-card {
+        margin-top: 32px;
+        padding: 20px;
+    }
+
+    .rub-summary {
+        height: auto;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .rub-summary__chips {
+        margin-top: 0;
+        flex-wrap: wrap;
+    }
+
+    .rub-summary__title {
+        font-size: 18px;
+    }
+
+    .rub-table {
+        overflow-x: auto;
+    }
+
+    .rub-table__head,
+    .rub-row,
+    .rub-add {
+        grid-template-columns: 300px 220px 100px 90px;
+        width: max-content;
+        min-width: 100%;
+        padding: 0 16px;
+    }
+
+    .rub-row,
+    .rub-add {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .rub-footer {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 18px 20px;
+    }
+
+    .rub-footer__actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 760px) {
+    .rub-card {
+        padding: 16px;
+    }
+
+    .rub-table {
+        overflow: visible;
+    }
+
+    .rub-table__head {
+        display: none;
+    }
+
+    .rub-row,
+    .rub-add {
+        grid-template-columns: minmax(0, 1fr) auto;
+        row-gap: 10px;
+        width: 100%;
+        height: auto;
+        padding: 14px;
+    }
+
+    .rub-row__desc {
+        grid-column: 1 / -1;
+    }
+
+    .rub-row__weight {
+        grid-column: 1;
+    }
+
+    .rub-row__action {
+        grid-column: 2;
+    }
+
+    .rub-btn {
+        flex: 1;
+        padding: 0 12px;
+        font-size: 14px;
+    }
+}

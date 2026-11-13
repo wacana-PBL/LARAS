@@ -12,6 +12,12 @@ export default defineConfig({
                 bunny('Instrument Sans', {
                     weights: [400, 500, 600],
                 }),
+                bunny('Krona One', {
+                    weights: [400],
+                }),
+                bunny('Poppins', {
+                    weights: [300, 400, 500, 600, 700],
+                }),
             ],
         }),
         tailwindcss(),

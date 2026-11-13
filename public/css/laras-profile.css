@@ -1,0 +1,412 @@
+/* ==========================================================================
+   LARAS — Profil Mahasiswa
+   Frame acuan: "Profile - Mahasiswa" 1440 × 1392
+   ========================================================================== */
+
+.prof-page {
+    box-sizing: border-box;
+    display: flex;
+    min-height: 100vh;
+    padding: 25px 53px 54px 60px;
+    background-color: #ffffff;
+    color: #20242b;
+    font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.prof-page *,
+.prof-page *::before,
+.prof-page *::after {
+    box-sizing: border-box;
+}
+
+.prof-shell {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1327px;
+    margin: 0 auto;
+}
+
+/* Hero -------------------------------------------------------------------- */
+
+.prof-hero {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    min-height: 123px;
+    margin-top: 55px;
+    padding: 16px 40px 16px 24px;
+    background-color: #e0e3e9;
+    border-radius: 15px;
+}
+
+.prof-hero__avatar {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 96px;
+    height: 91px;
+    background-color: #ed7a1c;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.prof-hero__identity {
+    min-width: 0;
+}
+
+.prof-hero__nameline {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.prof-hero__name {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.1;
+    color: #000000;
+}
+
+.prof-hero__meta {
+    margin: 16px 0 0;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.3;
+    color: #000000;
+}
+
+.prof-hero__edit {
+    flex: 0 0 auto;
+    width: 181px;
+    height: 53px;
+    margin-left: auto;
+    padding: 0;
+    background-color: #ed7a1c;
+    border: none;
+    border-radius: 40px;
+    color: #000000;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.prof-hero__edit:hover {
+    background-color: #dd6d12;
+}
+
+/* Badges ------------------------------------------------------------------ */
+
+.prof-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+    padding: 0 12px;
+    border-radius: 57px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.prof-badge--active {
+    background-color: #5af4a5;
+    color: #0a4619;
+}
+
+.prof-badge--stage {
+    height: 27px;
+    padding: 0 12px;
+    background-color: #fcc781;
+    border-radius: 10px;
+    color: #ed7a1c;
+    font-size: 16px;
+}
+
+/* Panels ------------------------------------------------------------------ */
+
+.prof-panel {
+    margin-top: 34px;
+    padding: 17px 24px 29px 21px;
+    background-color: #e0e3e9;
+    border-radius: 15px;
+}
+
+.prof-panel + .prof-panel {
+    margin-top: 33px;
+    padding-top: 15px;
+    padding-bottom: 27px;
+}
+
+.prof-panel__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.prof-panel__title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1;
+    color: #20242b;
+}
+
+.prof-panel__subtitle {
+    margin: 16px 0 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555b65;
+}
+
+.prof-panel__rule {
+    margin: 25px 0 0;
+    border: 0;
+    border-top: 1px solid #a8aaaf;
+}
+
+.prof-panel__eyebrow {
+    margin: 27px 0 0;
+    font-size: 16px;
+    line-height: 1;
+    color: #555b65;
+}
+
+.prof-thesis {
+    margin: 14px 0 0;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000000;
+}
+
+/* White info cards -------------------------------------------------------- */
+
+.prof-fields {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 77px 71px;
+    margin-top: 50px;
+}
+
+.prof-field {
+    display: flex;
+    flex-direction: column;
+    min-height: 96px;
+    padding: 15px 19px;
+    background-color: #ffffff;
+    border-radius: 15px;
+}
+
+.prof-field--wide {
+    grid-column: 1 / -1;
+}
+
+/* Frame: jarak baris 2 → kartu alamat lebih rapat (77 → 54) */
+@media (min-width: 1101px) {
+    .prof-field--wide {
+        margin-top: -23px;
+    }
+}
+
+.prof-field__label {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555b65;
+}
+
+.prof-field__value {
+    margin-top: 13px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1;
+    color: #000000;
+}
+
+.prof-field__value--lg {
+    font-size: 20px;
+}
+
+.prof-field__note {
+    margin-top: 12px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555b65;
+}
+
+.prof-field__link {
+    color: #000000;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.prof-advisors {
+    display: grid;
+    grid-template-columns: 618fr 640fr;
+    gap: 27px;
+    margin-top: 40px;
+}
+
+.prof-advisors .prof-field {
+    min-height: 127px;
+    padding: 14px 19px;
+}
+
+.prof-advisors .prof-field__value {
+    margin-top: 18px;
+}
+
+/* Responsive -------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+    .prof-fields {
+        gap: 24px;
+    }
+}
+
+@media (max-width: 900px) {
+    .prof-page {
+        padding: 20px 28px 40px;
+    }
+
+    .prof-hero {
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 32px;
+        padding: 18px 20px;
+    }
+
+    .prof-hero__avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 10px;
+        font-size: 26px;
+    }
+
+    .prof-hero__name {
+        font-size: 24px;
+    }
+
+    .prof-hero__meta {
+        margin-top: 8px;
+        font-size: 14px;
+    }
+
+    .prof-hero__edit {
+        height: 44px;
+        font-size: 13px;
+    }
+
+    .prof-fields {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+        margin-top: 32px;
+    }
+
+    .prof-panel {
+        padding: 18px 20px 24px;
+    }
+
+    .prof-panel__title {
+        font-size: 20px;
+    }
+
+    .prof-panel__subtitle,
+    .prof-panel__eyebrow,
+    .prof-field__label,
+    .prof-field__note {
+        font-size: 14px;
+    }
+
+    .prof-field__value {
+        font-size: 17px;
+    }
+
+    .prof-thesis {
+        font-size: 17px;
+    }
+
+    .prof-advisors {
+        gap: 16px;
+        margin-top: 26px;
+    }
+}
+
+@media (max-width: 760px) {
+    .prof-fields {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .prof-field {
+        min-height: 0;
+    }
+
+    .prof-advisors {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 420px) {
+    .prof-page {
+        padding: 16px;
+    }
+
+    .prof-hero {
+        margin-top: 24px;
+        padding: 16px;
+    }
+
+    .prof-hero__name {
+        font-size: 21px;
+    }
+
+    .prof-hero__meta {
+        font-size: 13px;
+    }
+
+    .prof-hero__edit {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .prof-panel,
+    .prof-panel + .prof-panel {
+        margin-top: 20px;
+        padding: 16px 14px 22px;
+    }
+
+    .prof-panel__title {
+        font-size: 18px;
+    }
+
+    .prof-badge--stage {
+        font-size: 13px;
+    }
+
+    .prof-thesis {
+        font-size: 15px;
+    }
+
+    .prof-field {
+        padding: 14px 16px;
+    }
+
+    .prof-field__value {
+        font-size: 16px;
+    }
+}

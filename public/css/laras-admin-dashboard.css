@@ -1,0 +1,297 @@
+/* ==========================================================================
+   LARAS — Dashboard Admin
+   Frame acuan: "Dashboard - Admin" 1440x1024
+   Banner 1327x117 @ (60,209), statistik 3x356x134 @ y418, info 2x610.5x315 @ y644
+   ========================================================================== */
+
+.admd-banner {
+    height: 117px;
+    padding: 8px 10px 0;
+    align-content: flex-start;
+}
+
+/* Statistik --------------------------------------------------------------- */
+
+.admd-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 127px;
+    margin-top: 92px;
+    padding: 0 2.5px;
+}
+
+.admd-stat {
+    position: relative;
+    height: 134px;
+    padding: 19px 18px 13px;
+    background-color: #e0e3e9;
+    border-radius: 15px;
+}
+
+.admd-stat__title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #020100;
+}
+
+.admd-stat__value {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 48px;
+    color: #020100;
+}
+
+.admd-stat__link {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #ed7a1c;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.admd-stat__link:hover {
+    text-decoration: underline;
+}
+
+.admd-stat__icon {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    display: flex;
+    width: 36px;
+    height: 36px;
+}
+
+.admd-stat__icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Informasi --------------------------------------------------------------- */
+
+.admd-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 106px;
+    margin-top: 92px;
+}
+
+.admd-card {
+    height: 315px;
+    padding: 35px 29px 0;
+    background-color: #e0e3e9;
+    border-radius: 8px;
+}
+
+.admd-card__title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #020100;
+}
+
+/* Aktivitas --------------------------------------------------------------- */
+
+.admd-activity {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+    margin: 27px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.admd-activity__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    min-height: 82px;
+}
+
+.admd-avatar {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 67px;
+    height: 67px;
+    margin-top: 7px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #747373;
+    border-radius: 50%;
+}
+
+.admd-activity__body {
+    min-width: 0;
+}
+
+.admd-activity__text {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #020100;
+}
+
+.admd-activity__time {
+    margin: 10px 0 0;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #020100;
+}
+
+/* Agenda ------------------------------------------------------------------ */
+
+.admd-agenda {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.admd-agenda__item {
+    height: 89px;
+    padding: 9px 15px 4px 17px;
+    background-color: #bebebe;
+    border-radius: 8px;
+}
+
+.admd-agenda__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.admd-agenda__row--bottom {
+    margin-top: 10px;
+}
+
+.admd-agenda__time {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    padding: 0 6px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #020100;
+    white-space: nowrap;
+    background-color: #d9dce1;
+    border-radius: 8px;
+}
+
+.admd-agenda__time--accent {
+    background-color: #fcc781;
+}
+
+.admd-agenda__room,
+.admd-agenda__kind {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #020100;
+    text-align: right;
+}
+
+.admd-agenda__name {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #020100;
+}
+
+/* Responsive -------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+    .admd-banner {
+        height: auto;
+        padding: 18px 22px;
+    }
+
+    .admd-stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+        margin-top: 28px;
+        padding: 0;
+    }
+
+    .admd-stat {
+        height: auto;
+        padding: 16px 18px 18px;
+    }
+
+    .admd-stat__value {
+        font-size: 28px;
+        line-height: 40px;
+    }
+
+    .admd-stat__link {
+        font-size: 14px;
+        white-space: normal;
+    }
+
+    .admd-info {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-top: 28px;
+    }
+
+    .admd-card {
+        height: auto;
+        padding: 24px 22px 26px;
+    }
+
+    .admd-card__title {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 760px) {
+    .admd-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .admd-activity__item {
+        min-height: 0;
+    }
+
+    .admd-agenda__item {
+        height: auto;
+    }
+
+    .admd-banner {
+        padding: 16px 18px;
+    }
+}
+
+@media (max-width: 420px) {
+    .admd-stat__title,
+    .admd-card__title {
+        font-size: 17px;
+    }
+
+    .admd-agenda__name {
+        font-size: 16px;
+    }
+
+    .admd-agenda__room,
+    .admd-agenda__kind,
+    .admd-agenda__time,
+    .admd-activity__text,
+    .admd-activity__time {
+        font-size: 13px;
+    }
+}

@@ -1,0 +1,164 @@
+/* ==========================================================================
+   LARAS — Pembimbing section shell
+   Shared by: Pengajuan, Pendaftaran Sempro, Pendaftaran Skripsi
+   Reference canvas: 1440 wide, content column 1280 starting at x = 80
+   ========================================================================== */
+
+.pmb-page {
+    box-sizing: border-box;
+    display: flex;
+    min-height: 100vh;
+    padding: 25px 53px 128px 60px;
+    background-color: #ffffff;
+    color: #020100;
+    font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.pmb-page *,
+.pmb-page *::before,
+.pmb-page *::after {
+    box-sizing: border-box;
+}
+
+.pmb-shell {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1327px;
+    margin: 0 auto;
+}
+
+.pmb-inner {
+    padding-right: 27px;
+    padding-left: 20px;
+}
+
+/* Tabs -------------------------------------------------------------------- */
+
+.pmb-tabs {
+    display: flex;
+    gap: 51px;
+    align-items: flex-end;
+    height: 48px;
+    margin-top: 43px;
+    border-bottom: 1px solid #d1d2ca;
+}
+
+.pmb-tab {
+    position: relative;
+    padding-bottom: 6px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #020100;
+    text-decoration: none;
+}
+
+.pmb-tab:hover {
+    color: #ed7a1c;
+}
+
+.pmb-tab.is-active {
+    font-weight: 600;
+    color: #ed7a1c;
+}
+
+.pmb-tab.is-active::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -7px;
+    left: 0;
+    height: 2px;
+    background-color: #ed7a1c;
+}
+
+/* Heading ----------------------------------------------------------------- */
+
+.pmb-title {
+    margin: 52px 0 0;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.pmb-subtitle {
+    margin: 8px 0 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Responsive -------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+    .pmb-page {
+        padding: 26px 28px 64px;
+    }
+
+    .pmb-inner {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .pmb-tabs {
+        gap: 24px;
+        height: 44px;
+        margin-top: 26px;
+        overflow-x: auto;
+    }
+
+    .pmb-tab {
+        font-size: 16px;
+        white-space: nowrap;
+    }
+
+    .pmb-title {
+        margin-top: 28px;
+        font-size: 23px;
+    }
+
+    .pmb-subtitle {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 760px) {
+    .pmb-page {
+        padding: 22px 20px 48px;
+    }
+
+    .pmb-tabs {
+        gap: 18px;
+        margin-top: 22px;
+    }
+
+    .pmb-title {
+        margin-top: 22px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 420px) {
+    .pmb-page {
+        padding: 20px 16px 40px;
+    }
+
+    .pmb-tabs {
+        gap: 14px;
+    }
+
+    .pmb-tab {
+        font-size: 14px;
+    }
+
+    .pmb-title {
+        font-size: 18px;
+    }
+
+    .pmb-subtitle {
+        font-size: 13px;
+    }
+}

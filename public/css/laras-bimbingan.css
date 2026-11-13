@@ -1,0 +1,487 @@
+/* ==========================================================================
+   LARAS — Bimbingan
+   Reference canvas: 1440 × 1601
+   ========================================================================== */
+
+.bmb-page {
+    box-sizing: border-box;
+    display: flex;
+    min-height: 100vh;
+    padding: 25px 53px 67px 60px;
+    background-color: #ffffff;
+    color: #020100;
+    font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.bmb-page *,
+.bmb-page *::before,
+.bmb-page *::after {
+    box-sizing: border-box;
+}
+
+.bmb-shell {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1327px;
+    margin: 0 auto;
+}
+
+/* Banner ------------------------------------------------------------------ */
+
+.bmb-banner {
+    display: flex;
+    flex-direction: column;
+    min-height: 117px;
+    margin-top: 70px;
+    padding: 17px 22px 19px;
+    background-color: #e0e3e9;
+    border-radius: 15px;
+}
+
+.bmb-banner__title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.bmb-banner__text {
+    margin: 4px 0 0;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.4;
+}
+
+/* Panels ------------------------------------------------------------------ */
+
+.bmb-panel {
+    background-color: #e0e3e9;
+    border-radius: 15px;
+}
+
+.bmb-panel--form {
+    min-height: 352px;
+    margin-top: 55px;
+    padding: 18px 35px 0 22px;
+}
+
+.bmb-panel--history {
+    min-height: 779px;
+    margin-top: 44px;
+    padding: 27px 27px 0 28px;
+}
+
+.bmb-panel__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.bmb-panel__title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.bmb-panel__subtitle {
+    margin: 6px 0 0;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.35;
+}
+
+.bmb-plus {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 49px;
+    margin-top: 3px;
+    padding: 0;
+    color: #ed7a1c;
+    background-color: #ffffff;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.bmb-plus svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Form -------------------------------------------------------------------- */
+
+.bmb-form {
+    margin-top: 31px;
+}
+
+.bmb-fields {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.bmb-field {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.bmb-label {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 30px;
+    color: #020100;
+}
+
+.bmb-input {
+    height: 45px;
+    padding: 0 16px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 300;
+    color: #020100;
+    background-color: #ffffff;
+    border: 0;
+    border-radius: 15px;
+    outline-offset: 2px;
+}
+
+.bmb-input::placeholder {
+    color: #555b65;
+}
+
+.bmb-upload {
+    display: flex;
+    align-items: center;
+    height: 45px;
+    padding: 3px;
+    background-color: #ffffff;
+    border-radius: 15px;
+}
+
+.bmb-upload__btn {
+    flex: 0 0 auto;
+    height: 40px;
+    padding: 0 18px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #ed7a1c;
+    border: 0;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.bmb-upload__name {
+    flex: 1;
+    min-width: 0;
+    height: 40px;
+    margin-left: 11px;
+    padding: 0;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 200;
+    color: #020100;
+    background: none;
+    border: 0;
+    outline-offset: 2px;
+}
+
+.bmb-upload__name::placeholder {
+    color: #555b65;
+}
+
+.bmb-label--topic {
+    display: block;
+    margin-top: 15px;
+}
+
+.bmb-input--topic {
+    width: 100%;
+}
+
+.bmb-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 15px;
+}
+
+.bmb-actions__note {
+    flex: 1;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.bmb-btn {
+    height: 56px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.bmb-btn--ghost {
+    width: 184px;
+    color: #020100;
+    background-color: #ffffff;
+    border: 1px solid #747373;
+}
+
+.bmb-btn--solid {
+    width: 216px;
+    color: #020100;
+    background-color: #ed7a1c;
+    border: 0;
+}
+
+/* History ----------------------------------------------------------------- */
+
+.bmb-history__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    padding-left: 3px;
+}
+
+.bmb-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+    margin: 14px 0 0;
+    padding: 0 19px 0 0;
+    list-style: none;
+}
+
+.bmb-legend li {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 30px;
+    white-space: nowrap;
+}
+
+.bmb-legend__dot {
+    width: 16px;
+    height: 16px;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+.bmb-table {
+    margin-top: 40px;
+}
+
+.bmb-row {
+    display: grid;
+    grid-template-columns: 190px 283px 352px 219px minmax(0, 1fr);
+    align-items: center;
+    padding-left: 38px;
+}
+
+.bmb-row--head {
+    min-height: 87px;
+    font-size: 18px;
+    font-weight: 400;
+    background-color: #ffffff;
+    border-radius: 15px;
+}
+
+.bmb-row:not(.bmb-row--head) {
+    position: relative;
+    min-height: 188px;
+}
+
+.bmb-row:not(.bmb-row--head) + .bmb-row {
+    border-top: 1px solid rgba(2, 1, 0, 0.22);
+}
+
+.bmb-row:last-child {
+    border-bottom: 1px solid rgba(2, 1, 0, 0.22);
+}
+
+.bmb-cell {
+    padding-right: 24px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.bmb-cell--strong {
+    font-weight: 400;
+}
+
+.bmb-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding-left: 15px;
+    color: #020100;
+    background-color: #fcc781;
+    border-radius: 15px;
+}
+
+.bmb-pill--status {
+    width: 159px;
+    height: 61px;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.bmb-pill--presence {
+    width: 179px;
+    height: 58px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.bmb-check {
+    flex: 0 0 auto;
+    width: 25px;
+    height: 27px;
+    color: #ffffff;
+}
+
+/* Responsive -------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+    .bmb-page {
+        padding: 26px 28px 48px;
+    }
+
+    .bmb-banner {
+        min-height: 0;
+        margin-top: 26px;
+    }
+
+    .bmb-panel--form {
+        min-height: 0;
+        margin-top: 26px;
+        padding: 22px 24px 26px;
+    }
+
+    .bmb-panel--history {
+        min-height: 0;
+        margin-top: 20px;
+        padding: 22px 20px 0;
+    }
+
+    .bmb-fields {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .bmb-actions {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .bmb-actions__note {
+        flex: 0 0 100%;
+    }
+
+    .bmb-history__head {
+        flex-direction: column;
+        gap: 0;
+        padding-left: 0;
+    }
+
+    .bmb-legend {
+        padding-right: 0;
+    }
+
+    .bmb-table {
+        margin-top: 20px;
+        overflow-x: auto;
+    }
+
+    .bmb-row {
+        min-width: 980px;
+    }
+
+    .bmb-row--head {
+        min-height: 64px;
+        font-size: 15px;
+    }
+
+    .bmb-row:not(.bmb-row--head) {
+        min-height: 0;
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+
+    .bmb-cell {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 760px) {
+    .bmb-banner__title {
+        font-size: 19px;
+    }
+
+    .bmb-banner__text {
+        font-size: 13.5px;
+    }
+
+    .bmb-panel__title {
+        font-size: 19px;
+    }
+
+    .bmb-panel__subtitle {
+        font-size: 13.5px;
+    }
+
+    .bmb-actions__note {
+        font-size: 13px;
+    }
+
+    .bmb-btn {
+        width: 100%;
+        height: 48px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 420px) {
+    .bmb-page {
+        padding: 20px 16px 32px;
+    }
+
+    .bmb-banner {
+        margin-top: 24px;
+        padding: 16px 18px;
+        border-radius: 8px;
+    }
+
+    .bmb-banner__title {
+        font-size: 18px;
+    }
+
+    .bmb-panel--form {
+        padding: 18px 16px 22px;
+    }
+
+    .bmb-panel__title {
+        font-size: 17px;
+    }
+
+    .bmb-actions {
+        gap: 10px;
+    }
+}

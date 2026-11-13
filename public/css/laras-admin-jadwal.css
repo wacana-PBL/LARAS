@@ -1,0 +1,439 @@
+/* ==========================================================================
+   LARAS — Penjadwalan Sidang (Admin)
+   Frame acuan: "Jadwal - Admin" 1440x1024
+   Banner 1327x137 @ y209, papan gelap 1327x556 @ y395 (antrean 436, form 881)
+   ========================================================================== */
+
+.admj-page {
+    padding-bottom: 73px;
+}
+
+.admj-banner {
+    height: 137px;
+    padding: 16px 10px 0;
+    align-content: flex-start;
+}
+
+.admj-banner .adm-banner__text {
+    margin-top: 0;
+}
+
+/* Papan ------------------------------------------------------------------- */
+
+.admj-board {
+    display: flex;
+    gap: 3px;
+    height: 556px;
+    margin-top: 49px;
+    padding: 4px;
+    overflow: hidden;
+    background-color: #747373;
+    border-radius: 8px;
+}
+
+/* Antrean ----------------------------------------------------------------- */
+
+.admj-queue {
+    display: flex;
+    flex: 0 0 436px;
+    flex-direction: column;
+    width: 436px;
+    background-color: #ffffff;
+    border-radius: 6px;
+}
+
+.admj-queue__head {
+    position: relative;
+    flex: 0 0 auto;
+    height: 70px;
+    padding: 20px 16px 0 18px;
+}
+
+.admj-queue__title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #020100;
+}
+
+.admj-queue__pill {
+    position: absolute;
+    top: 22px;
+    right: 16px;
+    display: inline-flex;
+    align-items: center;
+    height: 27px;
+    padding: 0 12px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    color: #ed7a1c;
+    background-color: #fcc781;
+    border-radius: 10px;
+}
+
+.admj-queue__list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 4px;
+}
+
+.admj-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 97px;
+    padding: 10px 14px 0;
+    font-family: inherit;
+    text-align: left;
+    background-color: #e0e3e9;
+    border: none;
+    cursor: pointer;
+}
+
+.admj-item.is-active {
+    height: 113px;
+    padding: 9px 16px 0;
+    background-color: #fcc781;
+}
+
+.admj-item.is-active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -4px;
+    width: 4px;
+    height: 100%;
+    background-color: #ed7a1c;
+}
+
+.admj-item__name {
+    overflow: hidden;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #020100;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.admj-item.is-active .admj-item__name {
+    font-weight: 600;
+}
+
+.admj-item__kind {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #020100;
+}
+
+.admj-item.is-active .admj-item__kind {
+    font-weight: 500;
+}
+
+.admj-item__status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #1d9329;
+}
+
+.admj-item__status svg {
+    width: 14px;
+    height: 17px;
+}
+
+/* Form plotting ----------------------------------------------------------- */
+
+.admj-form {
+    flex: 1;
+    min-width: 0;
+    padding: 35px 45px 0;
+    background-color: #ffffff;
+    border-radius: 6px;
+}
+
+.admj-form__title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #020100;
+}
+
+.admj-form__meta {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #020100;
+}
+
+.admj-form__rule {
+    margin: 29px 0 0;
+    border: none;
+    border-top: 1px solid #000000;
+}
+
+.admj-field {
+    margin-top: 25px;
+}
+
+.admj-field--room {
+    margin-top: 21px;
+}
+
+.admj-field__label {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #020100;
+}
+
+.admj-field__row {
+    display: flex;
+    gap: 24px;
+}
+
+.admj-input {
+    display: flex;
+    align-items: center;
+    height: 45px;
+    padding: 0 19px;
+    border: 1px solid #000000;
+    border-radius: 8px;
+}
+
+.admj-input--date {
+    flex: 0 0 382px;
+    justify-content: space-between;
+    width: 382px;
+}
+
+.admj-input--time {
+    flex: 0 0 179px;
+    width: 179px;
+}
+
+.admj-input--room {
+    width: 100%;
+}
+
+.admj-input__value {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #020100;
+}
+
+.admj-input__value--muted {
+    color: #747373;
+}
+
+.admj-input__icon {
+    width: 17px;
+    height: 20px;
+}
+
+.admj-examiners {
+    display: flex;
+    gap: 24px;
+    height: 100px;
+    margin-top: 21px;
+    padding: 13px 18px 0;
+    background-color: #e0e3e9;
+    border-radius: 15px;
+}
+
+.admj-examiner {
+    flex: 1;
+    min-width: 0;
+}
+
+.admj-examiner__label {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #020100;
+}
+
+.admj-examiner__select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 45px;
+    padding: 0 14px 0 16px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    color: #020100;
+    background-color: #747373;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.admj-examiner__select svg {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+}
+
+.admj-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 34px;
+    margin-top: 45px;
+}
+
+.admj-cancel {
+    padding: 0;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    color: #020100;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.admj-submit {
+    height: 30px;
+    padding: 0 24px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    color: #20242b;
+    background-color: #ed7a1c;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.admj-submit:hover {
+    background-color: #d96c14;
+}
+
+/* Responsive -------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+    .admj-page {
+        padding-bottom: 64px;
+    }
+
+    .admj-banner {
+        height: auto;
+        padding: 18px 22px;
+    }
+
+    .admj-board {
+        flex-direction: column;
+        height: auto;
+        margin-top: 28px;
+    }
+
+    .admj-queue {
+        flex: 0 0 auto;
+        width: 100%;
+        padding-bottom: 8px;
+    }
+
+    .admj-item,
+    .admj-item.is-active {
+        height: auto;
+        padding: 12px 16px 14px;
+    }
+
+    .admj-form {
+        padding: 24px 22px 28px;
+    }
+
+    .admj-field__row {
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    .admj-input--date,
+    .admj-input--time {
+        flex: 1 1 160px;
+        width: auto;
+    }
+
+    .admj-examiners {
+        height: auto;
+        flex-wrap: wrap;
+        gap: 14px;
+        padding: 16px;
+    }
+
+    .admj-examiner {
+        flex: 1 1 220px;
+    }
+
+    .admj-actions {
+        margin-top: 24px;
+    }
+}
+
+@media (max-width: 760px) {
+    .admj-banner {
+        padding: 16px 18px;
+    }
+
+    .admj-form {
+        padding: 20px 18px 24px;
+    }
+
+    .admj-form__title {
+        font-size: 18px;
+    }
+
+    .admj-input--date,
+    .admj-input--time {
+        flex: 1 1 100%;
+    }
+
+    .admj-examiner {
+        flex: 1 1 100%;
+    }
+}
+
+@media (max-width: 420px) {
+    .admj-banner {
+        padding: 14px 16px;
+    }
+
+    .admj-form__title {
+        font-size: 16px;
+    }
+
+    .admj-form__meta,
+    .admj-field__label,
+    .admj-input__value,
+    .admj-examiner__label,
+    .admj-examiner__select,
+    .admj-item__kind,
+    .admj-item__status {
+        font-size: 13px;
+    }
+
+    .admj-item__name {
+        font-size: 16px;
+    }
+
+    .admj-submit {
+        flex: 1;
+    }
+}

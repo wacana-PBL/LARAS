@@ -1,0 +1,367 @@
+/* ==========================================================================
+   LARAS — Dashboard
+   Reference canvas: 1440 × 1024
+   ========================================================================== */
+
+.dash-page {
+    box-sizing: border-box;
+    display: flex;
+    min-height: 100vh;
+    padding: 25px 53px 52px 60px;
+    background-color: #ffffff;
+    color: #111111;
+    font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.dash-page *,
+.dash-page *::before,
+.dash-page *::after {
+    box-sizing: border-box;
+}
+
+.dash-shell {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Navbar component styles live in css/laras-navbar.css -------------------- */
+
+/* Project banner ---------------------------------------------------------- */
+
+.dash-banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 117px;
+    margin-top: 70px;
+    padding: 21px 22px;
+    background-color: #e0e3e9;
+    border-radius: 15px;
+}
+
+.dash-banner__title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #000000;
+}
+
+.dash-banner__meta {
+    margin: 6px 0 0;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.4;
+    color: #000000;
+}
+
+/* Grid -------------------------------------------------------------------- */
+
+.dash-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 43px 61px;
+    margin-top: 61px;
+}
+
+.dash-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 134px;
+    padding: 19px 12px 19px 31px;
+    background-color: #e0e3e9;
+    border-radius: 15px;
+}
+
+.dash-card--detail {
+    min-height: 227px;
+    margin-top: 20px;
+    padding: 11px 24px 24px 14px;
+}
+
+.dash-card__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.dash-card__label {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #000000;
+}
+
+.dash-card--detail .dash-card__label {
+    font-weight: 500;
+    text-transform: none;
+}
+
+.dash-card__icon {
+    display: flex;
+    flex: 0 0 auto;
+    margin-top: -7px;
+    color: #ed7a1c;
+}
+
+.dash-card__icon svg {
+    width: 46px;
+    height: 46px;
+}
+
+.dash-card__icon--success {
+    color: #2f9e57;
+}
+
+.dash-card__value {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    color: #000000;
+}
+
+.dash-card__value--success {
+    color: #19a32e;
+}
+
+/* Detail cards ------------------------------------------------------------ */
+
+.dash-rows {
+    display: grid;
+    gap: 35px;
+    margin: 36px 0 0;
+}
+
+.dash-row {
+    display: flex;
+    align-items: center;
+    min-height: 47px;
+    padding: 0 17px;
+    background-color: #ffffff;
+    border-radius: 15px;
+}
+
+.dash-row dt {
+    flex: 0 0 187px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #000000;
+}
+
+.dash-row dd {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.2;
+    color: #000000;
+}
+
+.dash-examiners {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 36px;
+}
+
+.dash-examiner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 136px;
+    padding: 7px 10px 10px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.dash-examiner__role {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #000000;
+}
+
+.dash-examiner__name {
+    margin-top: 35px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.3;
+    color: #000000;
+}
+
+/* Responsive -------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+    .dash-page {
+        padding: 26px 28px 40px;
+    }
+
+    .dash-banner {
+        min-height: 0;
+        margin-top: 26px;
+        padding: 18px 20px;
+    }
+
+    .dash-banner__title {
+        font-size: 15.5px;
+    }
+
+    .dash-banner__meta {
+        font-size: 12.5px;
+    }
+
+    .dash-grid {
+        margin-top: 28px;
+        gap: 16px;
+    }
+
+    .dash-card {
+        min-height: 128px;
+        padding: 20px 16px 22px 22px;
+    }
+
+    .dash-card--detail {
+        min-height: 0;
+        margin-top: 0;
+        padding: 18px 18px 22px;
+    }
+
+    .dash-card__icon svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    .dash-rows {
+        gap: 12px;
+        margin-top: 18px;
+    }
+
+    .dash-row {
+        gap: 10px;
+        min-height: 0;
+        padding: 12px 16px;
+    }
+
+    .dash-row dt {
+        flex: 0 0 auto;
+        font-size: 15px;
+    }
+
+    .dash-row dd {
+        font-size: 15px;
+    }
+
+    .dash-examiners {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+        margin-top: 18px;
+    }
+
+    .dash-examiner {
+        min-height: 0;
+        padding: 12px 14px;
+    }
+
+    .dash-examiner__role {
+        font-size: 15px;
+    }
+
+    .dash-examiner__name {
+        margin-top: 6px;
+        font-size: 14px;
+    }
+
+    .dash-card__label {
+        font-size: 16px;
+    }
+
+    .dash-card--detail .dash-card__label {
+        font-size: 17px;
+    }
+
+    .dash-card__value {
+        font-size: 27px;
+        margin-top: 14px;
+    }
+}
+
+@media (max-width: 760px) {
+    .dash-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .dash-card--detail {
+        min-height: 0;
+    }
+
+    .dash-row {
+        padding: 13px 16px;
+    }
+
+    .dash-examiners {
+        gap: 8px;
+    }
+
+    .dash-examiner {
+        padding: 10px 12px;
+    }
+}
+
+@media (max-width: 420px) {
+    .dash-page {
+        padding: 20px 16px 32px;
+    }
+
+    .dash-banner {
+        margin-top: 24px;
+        padding: 16px 18px;
+        border-radius: 8px;
+    }
+
+    .dash-banner__title {
+        font-size: 14px;
+    }
+
+    .dash-card {
+        min-height: 110px;
+        padding: 18px 18px 20px;
+    }
+
+    .dash-card__label {
+        font-size: 15px;
+    }
+
+    .dash-card--detail .dash-card__label {
+        font-size: 16px;
+    }
+
+    .dash-card__value {
+        font-size: 26px;
+    }
+
+    .dash-card__icon svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .dash-row {
+        flex-wrap: wrap;
+        gap: 2px 10px;
+    }
+
+    .dash-row dt {
+        flex: 0 0 100%;
+    }
+}

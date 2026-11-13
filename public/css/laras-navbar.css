@@ -1,0 +1,246 @@
+/* ==========================================================================
+   LARAS — Navbar (component)
+   Frame acuan: "Dashboard - Mahasiswa" & "Profile - Mahasiswa" 1440px
+   Logo 40px, menu 20px, pill 200x92, logout 48, avatar 71
+   ========================================================================== */
+
+.dash-topbar,
+.dash-topbar *,
+.dash-topbar *::before,
+.dash-topbar *::after {
+    box-sizing: border-box;
+}
+
+.dash-topbar {
+    display: flex;
+    align-items: center;
+    min-height: 92px;
+    gap: 0;
+    font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.dash-brand {
+    font-family: 'Krona One', 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    font-size: 40px;
+    line-height: 1;
+    color: #000000;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.dash-nav {
+    display: flex;
+    flex: 0 0 auto;
+    margin-left: 109px;
+    gap: 86px;
+    min-width: 0;
+}
+
+.dash-nav__link {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #020100;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.15s ease;
+}
+
+.dash-nav__link:hover {
+    color: #ed7a1c;
+}
+
+.dash-nav__link.is-active {
+    color: #ed7a1c;
+    font-weight: 600;
+}
+
+.dash-tools {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 29px;
+    height: 92px;
+    padding: 0 21px 0 31px;
+    background-color: #d1d2ca;
+    border-radius: 999px;
+}
+
+.dash-tools__logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    background-color: #d25050;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.dash-tools__logout:hover {
+    background-color: #c24444;
+}
+
+.dash-tools__logout svg {
+    width: 35px;
+    height: 35px;
+}
+
+.dash-tools__logout:focus-visible,
+.dash-brand:focus-visible,
+.dash-nav__link:focus-visible {
+    outline: 2px solid #ed7a1c;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+.dash-tools__avatar {
+    display: block;
+    width: 71px;
+    height: 71px;
+    background-color: #747373;
+    border-radius: 50%;
+}
+
+/* Varian admin (5 menu, jarak 36px) --------------------------------------- */
+
+.dash-topbar--admin .dash-nav {
+    margin-left: 106px;
+    gap: 36px;
+}
+
+@media (max-width: 1100px) {
+    .dash-topbar--admin .dash-nav {
+        margin-left: 40px;
+        gap: 24px;
+    }
+}
+
+@media (max-width: 900px) {
+    .dash-topbar--admin .dash-nav {
+        flex-wrap: wrap;
+        margin-left: 0;
+        gap: 16px 22px;
+    }
+}
+
+@media (max-width: 420px) {
+    .dash-topbar--admin .dash-nav {
+        gap: 12px 14px;
+    }
+}
+
+/* Varian oranye (halaman profil) ------------------------------------------ */
+
+.dash-topbar--orange .dash-tools {
+    background-color: #ed7a1c;
+}
+
+/* Responsive -------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+    .dash-nav {
+        margin-left: 40px;
+        gap: 40px;
+    }
+
+    .dash-brand {
+        font-size: 32px;
+    }
+
+    .dash-nav__link {
+        font-size: 17px;
+    }
+
+    .dash-tools {
+        height: 72px;
+        gap: 20px;
+        padding: 0 16px 0 22px;
+    }
+
+    .dash-tools__logout {
+        width: 40px;
+        height: 40px;
+        border-radius: 7px;
+    }
+
+    .dash-tools__logout svg {
+        width: 27px;
+        height: 27px;
+    }
+
+    .dash-tools__avatar {
+        width: 54px;
+        height: 54px;
+    }
+}
+
+@media (max-width: 900px) {
+    .dash-topbar {
+        flex-wrap: wrap;
+        min-height: 0;
+        gap: 16px 20px;
+        padding-bottom: 10px;
+    }
+
+    .dash-brand {
+        font-size: 28px;
+    }
+
+    .dash-nav {
+        order: 3;
+        flex: 1 0 100%;
+        margin-left: 0;
+        justify-content: flex-start;
+        gap: 28px;
+    }
+
+    .dash-nav__link {
+        font-size: 15px;
+    }
+
+    .dash-tools {
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 420px) {
+    .dash-brand {
+        font-size: 22px;
+    }
+
+    .dash-nav {
+        gap: 16px;
+    }
+
+    .dash-nav__link {
+        font-size: 13px;
+    }
+
+    .dash-tools {
+        height: 38px;
+        gap: 10px;
+        padding: 0 4px 0 8px;
+    }
+
+    .dash-tools__logout {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+    }
+
+    .dash-tools__logout svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .dash-tools__avatar {
+        width: 30px;
+        height: 30px;
+    }
+}

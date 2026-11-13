@@ -1,0 +1,430 @@
+/* ==========================================================================
+   LARAS — Penerbitan Berita Acara (Admin)
+   Frame acuan: "Berita Acara - Admin" 1440x1024
+   Panel konten 1327x720, antrean 340, pratinjau dokumen 939x509
+   ========================================================================== */
+
+.ba-page {
+    padding-bottom: 57px;
+    color: #1a1a1a;
+}
+
+/* Header halaman ---------------------------------------------------------- */
+
+.ba-header {
+    margin-top: 32px;
+}
+
+.ba-header__title {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #1a1a1a;
+}
+
+.ba-header__text {
+    margin: 6px 0 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #6b7280;
+}
+
+/* Panel konten ------------------------------------------------------------ */
+
+.ba-content {
+    display: grid;
+    grid-template-columns: 340px minmax(0, 1fr);
+    height: 720px;
+    margin-top: 32px;
+    overflow: hidden;
+    background-color: #f3f4f6;
+    border-radius: 12px;
+}
+
+/* Antrean ----------------------------------------------------------------- */
+
+.ba-queue {
+    background-color: #ffffff;
+    border-right: 1px solid #e5e7eb;
+}
+
+.ba-queue__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    height: 58px;
+    padding: 0 20px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.ba-queue__title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #1a1a1a;
+}
+
+.ba-queue__badge {
+    display: inline-flex;
+    align-items: center;
+    height: 26px;
+    padding: 0 10px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    color: #ffffff;
+    white-space: nowrap;
+    background-color: #ed7a1c;
+    border-radius: 12px;
+}
+
+.ba-student {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+    height: 101px;
+    padding: 16px 20px;
+    font-family: inherit;
+    text-align: left;
+    background-color: #ffffff;
+    border: none;
+    border-bottom: 1px solid #e5e7eb;
+    cursor: pointer;
+}
+
+.ba-student.is-active {
+    background-color: #fff7ed;
+    border: 1px solid #ed7a1c;
+}
+
+.ba-student__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.ba-student__name {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #1a1a1a;
+}
+
+.ba-student__type {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    height: 23px;
+    padding: 0 8px;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1;
+    color: #1a1a1a;
+    background-color: #f3f4f6;
+    border-radius: 4px;
+}
+
+.ba-student.is-active .ba-student__type {
+    color: #ffffff;
+    background-color: #1a1a1a;
+}
+
+.ba-student__nim {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #6b7280;
+}
+
+.ba-student__nilai {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #10b981;
+}
+
+/* Pratinjau --------------------------------------------------------------- */
+
+.ba-preview {
+    min-width: 0;
+    padding: 20px 24px 0;
+}
+
+.ba-preview__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.ba-preview__title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #1a1a1a;
+}
+
+.ba-preview__text {
+    margin: 4px 0 0;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #6b7280;
+}
+
+.ba-preview__actions {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 12px;
+}
+
+.ba-btn {
+    height: 40px;
+    padding: 0 20px;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.5;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.ba-btn--outline {
+    font-weight: 500;
+    color: #1a1a1a;
+    background-color: transparent;
+    border: 1px solid #1a1a1a;
+}
+
+.ba-btn--solid {
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #1a1a1a;
+    border: 1px solid #1a1a1a;
+}
+
+.ba-btn--solid:hover {
+    background-color: #000000;
+}
+
+/* Dokumen ----------------------------------------------------------------- */
+
+.ba-doc {
+    height: 509px;
+    margin-top: 20px;
+    padding: 40px 48px;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+.ba-doc__head {
+    text-align: center;
+}
+
+.ba-doc__title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #1a1a1a;
+}
+
+.ba-doc__subtitle {
+    margin: 6px 0 0;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #ed7a1c;
+}
+
+.ba-doc__rule {
+    height: 2px;
+    margin-top: 16px;
+    background-color: #1a1a1a;
+}
+
+.ba-doc__body {
+    padding-top: 24px;
+}
+
+.ba-doc__lead {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #1a1a1a;
+}
+
+.ba-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 16px 0 0;
+}
+
+.ba-field {
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.ba-field dt {
+    margin: 0;
+    font-weight: 400;
+    color: #6b7280;
+}
+
+.ba-field dd {
+    position: relative;
+    margin: 0;
+    padding-left: 20px;
+    font-weight: 400;
+    color: #1a1a1a;
+}
+
+.ba-field dd::before {
+    content: ':';
+    position: absolute;
+    left: 0;
+}
+
+.ba-field:last-child dd {
+    font-weight: 700;
+}
+
+.ba-verdict {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 148px;
+    margin-top: 16px;
+    padding-top: 20px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+}
+
+.ba-verdict__label {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #6b7280;
+}
+
+.ba-verdict__value {
+    margin: 8px 0 0;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #1a1a1a;
+}
+
+.ba-verdict__score {
+    margin: 8px 0 0;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #1a1a1a;
+}
+
+.ba-doc__note {
+    margin: 14px 0 0;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #707070;
+}
+
+/* Responsive -------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+    .ba-page {
+        padding-bottom: 64px;
+    }
+
+    .ba-header {
+        margin-top: 26px;
+    }
+
+    .ba-header__title {
+        font-size: 22px;
+    }
+
+    .ba-content {
+        grid-template-columns: 1fr;
+        height: auto;
+        margin-top: 24px;
+    }
+
+    .ba-queue {
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .ba-preview {
+        padding: 20px;
+    }
+
+    .ba-preview__head {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .ba-doc {
+        height: auto;
+        padding: 28px 24px;
+    }
+}
+
+@media (max-width: 760px) {
+    .ba-header__title {
+        font-size: 20px;
+    }
+
+    .ba-preview {
+        padding: 16px;
+    }
+
+    .ba-preview__actions {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .ba-btn {
+        flex: 1 1 150px;
+        padding: 0 12px;
+    }
+
+    .ba-doc {
+        padding: 22px 18px;
+    }
+
+    .ba-field {
+        grid-template-columns: 80px minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 420px) {
+    .ba-header__title {
+        font-size: 18px;
+    }
+
+    .ba-header__text,
+    .ba-preview__text,
+    .ba-doc__lead,
+    .ba-field {
+        font-size: 12px;
+    }
+
+    .ba-verdict__value {
+        font-size: 30px;
+    }
+}

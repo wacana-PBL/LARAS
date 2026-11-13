@@ -1,0 +1,393 @@
+/* ==========================================================================
+   LARAS — Jadwal
+   Reference canvas: 1440 × 1140
+   ========================================================================== */
+
+.jdw-page {
+    box-sizing: border-box;
+    display: flex;
+    min-height: 100vh;
+    padding: 25px 53px 44px 60px;
+    background-color: #ffffff;
+    color: #020100;
+    font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.jdw-page *,
+.jdw-page *::before,
+.jdw-page *::after {
+    box-sizing: border-box;
+}
+
+.jdw-shell {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1327px;
+    margin: 0 auto;
+}
+
+/* Agenda panel ------------------------------------------------------------ */
+
+.jdw-agenda {
+    display: grid;
+    grid-template-columns: 665px minmax(0, 1fr);
+    gap: 31px;
+    margin-top: 67px;
+    padding: 19px 21px 41px 30px;
+    background-color: #e0e3e9;
+    border-radius: 15px;
+}
+
+.jdw-month {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 36px;
+    text-align: center;
+}
+
+.jdw-calendar {
+    margin-top: 21px;
+    padding: 31px 12px 14px;
+    background-color: #ffffff;
+    border-radius: 15px;
+}
+
+.jdw-calendar__grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.jdw-calendar__day {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: center;
+}
+
+.jdw-calendar__dates {
+    margin-top: 29px;
+}
+
+.jdw-date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 74px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.jdw-date__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 49px;
+    height: 49px;
+    border-radius: 50%;
+}
+
+.jdw-date--bimbingan .jdw-date__inner {
+    background-color: #ff973d;
+    color: #f7f1f1;
+}
+
+.jdw-date--sidang .jdw-date__inner {
+    background-color: #d25050;
+    color: #ffffff;
+}
+
+/* Upcoming schedule ------------------------------------------------------- */
+
+.jdw-side {
+    margin-top: 57px;
+}
+
+.jdw-side__title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 36px;
+}
+
+.jdw-events {
+    display: grid;
+    gap: 26px;
+    margin-top: 17px;
+}
+
+.jdw-event {
+    overflow: hidden;
+    background-color: #ffffff;
+    border-radius: 30px;
+}
+
+.jdw-event__top {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding: 0 23px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #e0e3e9;
+    background-color: #ed7a1c;
+}
+
+.jdw-event--sidang .jdw-event__top {
+    background-color: #d25050;
+}
+
+.jdw-event__bottom {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding: 0 23px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #000000;
+    border-top: 1px solid #000000;
+}
+
+.jdw-side__note {
+    margin: 37px 0 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+/* Preferences ------------------------------------------------------------- */
+
+.jdw-prefs {
+    margin-top: 27px;
+    padding: 11px 56px 23px 19px;
+    background-color: #e0e3e9;
+    border-radius: 22px;
+}
+
+.jdw-prefs__title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 36px;
+}
+
+.jdw-prefs__list {
+    display: grid;
+    gap: 21px;
+    margin-top: 26px;
+}
+
+.jdw-pref {
+    display: flex;
+    align-items: stretch;
+    height: 52px;
+    background-color: #ffffff;
+}
+
+.jdw-pref__label {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    padding-left: 37px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #000000;
+}
+
+.jdw-pref__meter {
+    display: flex;
+    flex: 0 0 360px;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff383c;
+}
+
+.jdw-pref--sidang .jdw-pref__meter {
+    background-color: #23a436;
+}
+
+.jdw-pref--deadline .jdw-pref__meter {
+    background-color: #ff8d28;
+}
+
+.jdw-pref__move {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 49px;
+    height: 49px;
+    padding: 0;
+    color: #ffffff;
+    background: none;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.jdw-pref__move svg {
+    width: 24px;
+    height: 24px;
+}
+
+.jdw-prefs__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 21px;
+}
+
+.jdw-add {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 360px;
+    height: 52px;
+    padding: 0 22px 0 70px;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #ed7a1c;
+    border: 0;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.jdw-add svg {
+    flex: 0 0 auto;
+    width: 28px;
+    height: 28px;
+}
+
+/* Responsive -------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+    .jdw-page {
+        padding: 26px 28px 40px;
+    }
+
+    .jdw-agenda {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+        margin-top: 26px;
+        padding: 18px 18px 24px;
+    }
+
+    .jdw-calendar {
+        margin-top: 12px;
+        padding: 18px 6px 6px;
+    }
+
+    .jdw-side {
+        margin-top: 0;
+    }
+
+    .jdw-side__title,
+    .jdw-month {
+        font-size: 19px;
+    }
+
+    .jdw-event__top {
+        height: 48px;
+        font-size: 15px;
+    }
+
+    .jdw-event__bottom {
+        height: 48px;
+        font-size: 16px;
+    }
+
+    .jdw-prefs {
+        margin-top: 20px;
+        padding: 16px 16px 20px;
+    }
+
+    .jdw-prefs__title {
+        font-size: 19px;
+    }
+
+    .jdw-pref__label {
+        font-size: 15px;
+    }
+
+    .jdw-pref__meter {
+        flex-basis: 33%;
+    }
+
+    .jdw-add {
+        width: 100%;
+        padding: 0 18px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 760px) {
+    .jdw-calendar__day {
+        font-size: 13px;
+    }
+
+    .jdw-date {
+        height: 52px;
+        font-size: 15px;
+    }
+
+    .jdw-date__inner {
+        width: 34px;
+        height: 34px;
+    }
+
+    .jdw-event__top,
+    .jdw-event__bottom {
+        padding: 0 16px;
+    }
+
+    .jdw-pref__label {
+        padding-left: 16px;
+    }
+
+    .jdw-pref__meter {
+        flex-basis: 26%;
+    }
+}
+
+@media (max-width: 420px) {
+    .jdw-page {
+        padding: 20px 16px 32px;
+    }
+
+    .jdw-agenda {
+        padding: 16px 12px 20px;
+        border-radius: 8px;
+    }
+
+    .jdw-date {
+        height: 44px;
+        font-size: 14px;
+    }
+
+    .jdw-date__inner {
+        width: 30px;
+        height: 30px;
+    }
+
+    .jdw-prefs {
+        padding: 14px 12px 18px;
+        border-radius: 14px;
+    }
+
+    .jdw-pref__label {
+        padding-left: 12px;
+        font-size: 12.5px;
+    }
+
+    .jdw-add {
+        font-size: 14px;
+    }
+}
