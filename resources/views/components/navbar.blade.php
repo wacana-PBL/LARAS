@@ -36,6 +36,11 @@
                 <path d="M11.4 12h8.4M16.2 8.4 19.8 12l-3.6 3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
         </button>
-        <span class="block size-[71px] rounded-full bg-muted max-[1101px]:size-[54px] max-[421px]:size-[30px]" aria-hidden="true"></span>
+        @if ($admin)
+            <span class="block size-[71px] rounded-full bg-muted max-[1101px]:size-[54px] max-[421px]:size-[30px]" aria-hidden="true"></span>
+        @else
+            <a class="block size-[71px] shrink-0 rounded-full bg-muted transition duration-200 hover:bg-brand-dark hover:ring-2 hover:ring-white/80 max-[1101px]:size-[54px] max-[421px]:size-[30px]"
+               href="{{ route('profile') }}" aria-label="Buka profil" title="Profil"></a>
+        @endif
     </div>
 </header>
