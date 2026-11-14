@@ -62,9 +62,13 @@
                     <div class="mt-[15px] flex items-center gap-6 max-[1101px]:flex-wrap max-[1101px]:gap-3 max-[421px]:gap-2.5">
                         <p class="m-0 flex-1 text-[14px] font-normal leading-[1.3] max-[1101px]:flex-[0_0_100%] max-[761px]:text-[13px]">Draf belum dikirim kepada dosen.</p>
                         <button class="h-14 w-[184px] cursor-pointer rounded-[15px] border border-muted bg-white text-base font-bold text-ink max-[761px]:h-12 max-[761px]:w-full max-[761px]:text-[15px]"
-                                type="button">Simpan Draf Log</button>
+                                type="button"
+                                data-notif-open="notif-draf-logbook">Simpan Draf Log</button>
                         <button class="h-14 w-[216px] cursor-pointer rounded-[15px] border-0 btn-primary bg-brand text-base font-bold text-ink max-[761px]:h-12 max-[761px]:w-full max-[761px]:text-[15px]"
-                                type="button">Kirim Logbook</button>
+                                type="button"
+                                data-notif-open="notif-draf-logbook"
+                                data-notif-empty="notif-logbook-kurang"
+                                data-notif-fields="#bmb-date,#bmb-topic">Kirim Logbook</button>
                     </div>
                 </form>
             </section>
@@ -126,4 +130,18 @@
 
         </div>
     </main>
+
+    <x-notif-dialog id="notif-draf-logbook" title="Draf logbook tersimpan" :actions="[
+        ['label' => 'Tutup draf logbook', 'size' => 'xl'],
+    ]">
+        <p class="m-0">Catatan belum dikirim kepada dosen pembimbing.</p>
+        <p class="m-0">Lengkapi draf, lalu pilih Kirim Logbook saat sudah siap.</p>
+    </x-notif-dialog>
+
+    <x-notif-dialog id="notif-logbook-kurang" title="Lengkapi catatan bimbingan" :actions="[
+        ['label' => 'Lengkapi data logbook', 'size' => 'xl'],
+    ]">
+        <p class="m-0">Tanggal bimbingan, dosen pembimbing, dan catatan pembahasan masih kosong.</p>
+        <p class="mt-[20px]">Lengkapi data sebelum mengirim kepada dosen.</p>
+    </x-notif-dialog>
 @endsection

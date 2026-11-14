@@ -50,7 +50,11 @@
         </section>
 
         <section class="mt-6 min-h-[224px] rounded-[12px] bg-line p-6 max-[1101px]:mt-[22px] max-[761px]:p-[20px_18px]" aria-labelledby="pgj-lecturers">
-            <h2 class="m-0 text-[18px] font-semibold leading-[1.5] max-[421px]:text-[16px]" id="pgj-lecturers">Usulan Dosen Pembimbing</h2>
+            <div class="flex flex-wrap items-center justify-between gap-2">
+                <h2 class="m-0 text-[18px] font-semibold leading-[1.5] max-[421px]:text-[16px]" id="pgj-lecturers">Usulan Dosen Pembimbing</h2>
+                <button class="cursor-pointer border-0 bg-transparent p-0 text-[14px] font-semibold text-brand underline decoration-transparent underline-offset-4 transition-colors hover:text-brand-dark hover:decoration-current"
+                        type="button" data-notif-open="notif-petunjuk-pengajuan">Petunjuk</button>
+            </div>
             <p class="mt-[5px] text-[14px] leading-[1.45]">Urutkan hingga 3 usulan dosen. Pembimbing ditetapkan setelah proses persetujuan.</p>
 
             <div class="mt-5 grid grid-cols-[repeat(3,minmax(0,1fr))] gap-5 max-[1101px]:grid-cols-1 max-[1101px]:gap-3.5">
@@ -71,9 +75,65 @@
 
         <div class="mt-[67px] flex justify-end gap-[42px] max-[1101px]:mt-7 max-[1101px]:gap-4">
             <button class="h-[53px] w-[181px] cursor-pointer rounded-lg border border-muted bg-white text-[14px] font-bold text-ink max-[761px]:h-12 max-[761px]:w-auto max-[761px]:flex-1"
-                    type="button">Simpan Draf</button>
+                    type="button"
+                    data-notif-open="notif-draf-pengajuan">Simpan Draf</button>
             <button class="h-[53px] w-[181px] cursor-pointer rounded-lg border-0 btn-primary bg-brand text-base font-semibold text-ink max-[761px]:h-12 max-[761px]:w-auto max-[761px]:flex-1"
-                    type="button">Kirim Pengajuan</button>
+                    type="button"
+                    data-notif-open="notif-konfirmasi-pengajuan"
+                    data-notif-empty="notif-data-pengajuan"
+                    data-notif-fields="#pgj-judul,#pgj-abstrak">Kirim Pengajuan</button>
         </div>
     </x-pembimbing-shell>
+
+    <x-notif-dialog id="notif-konfirmasi-pengajuan" title="Kirim pengajuan pembimbing?" :actions="[
+        ['label' => 'Periksa kembali', 'variant' => 'secondary'],
+        ['label' => 'Ya, kirim pengajuan', 'act' => 'pengajuan-kirim'],
+    ]">
+        <p class="m-0">Pastikan judul, abstrak, dan referensi sudah sesuai.</p>
+        <p class="m-0">Periksa kembali urutan dosen yang kamu usulkan.</p>
+    </x-notif-dialog>
+
+    <x-notif-dialog id="notif-pengajuan-mengirim" title="Sedang mengirim pengajuan"
+                    auto="notif-pengajuan-berhasil" :delay="1600">
+        <p class="m-0">Tunggu sampai proses pengiriman selesai.</p>
+        <p class="m-0">Halaman akan menampilkan hasil pengiriman.</p>
+    </x-notif-dialog>
+
+    <x-notif-dialog id="notif-pengajuan-berhasil" title="Pengajuan berhasil dikirim" :actions="[
+        ['label' => 'Tutup', 'variant' => 'secondary'],
+        ['label' => 'Lihat dashboard', 'href' => route('dashboard')],
+    ]">
+        <p class="m-0">Pengajuanmu menunggu pemeriksaan.</p>
+        <p class="m-0">Lihat perkembangan pengajuan melalui dashboard.</p>
+    </x-notif-dialog>
+
+    <x-notif-dialog id="notif-pengajuan-gagal" title="Pengajuan belum terkirim" tone="line" :actions="[
+        ['label' => 'Kembali', 'variant' => 'secondary'],
+        ['label' => 'Coba kirim lagi', 'act' => 'pengajuan-kirim'],
+    ]">
+        <p class="m-0">Periksa koneksi internet, lalu coba kirim kembali.</p>
+        <p class="m-0">Jangan tutup halaman sebelum proses selesai.</p>
+    </x-notif-dialog>
+
+    <x-notif-dialog id="notif-draf-pengajuan" title="Draf pengajuan tersimpan" tone="line" :actions="[
+        ['label' => 'Kembali ke form'],
+    ]">
+        <p class="m-0">Data yang sudah kamu isi disimpan sebagai draf.</p>
+        <p class="m-0">Pengajuan belum dikirim untuk diperiksa.</p>
+    </x-notif-dialog>
+
+    <x-notif-dialog id="notif-data-pengajuan" title="Lengkapi data pengajuan" :actions="[
+        ['label' => 'Lengkapi data'],
+    ]">
+        <p class="m-0">Judul proposal dan abstrak masih kosong.</p>
+        <p class="m-0">Isi kedua kolom tersebut sebelum mengirim pengajuan.</p>
+    </x-notif-dialog>
+
+    <x-notif-dialog id="notif-petunjuk-pengajuan" title="Petunjuk pengajuan pembimbing" tone="line" :actions="[
+        ['label' => 'Mengerti'],
+    ]">
+        <p class="m-0">Topik Mandiri: ajukan topik yang kamu susun.</p>
+        <p class="m-0">Topik dari Dosen: pilih topik yang ditawarkan dosen.</p>
+        <p class="m-0">Isi data topik, lalu usulkan dosen pembimbing.</p>
+    </x-notif-dialog>
 @endsection

@@ -136,7 +136,8 @@
                     <button class="h-10 cursor-pointer rounded-lg border border-[#b8b8b8] bg-white px-5 text-base font-medium leading-[1.5] text-muted max-[421px]:flex-1 max-[421px]:px-3 max-[421px]:text-[14px]"
                             type="button">Batal</button>
                     <button class="h-10 cursor-pointer rounded-lg border-0 btn-primary bg-brand px-5 text-base font-semibold leading-[1.5] text-ink max-[421px]:flex-1 max-[421px]:px-3 max-[421px]:text-[14px]"
-                            type="button">Simpan Perubahan</button>
+                            type="button"
+                            data-notif-open="notif-admin-tersimpan">Simpan Perubahan</button>
                 </div>
             </div>
         </section>
@@ -219,4 +220,11 @@
             </div>
         </section>
     </x-admin-shell>
+
+    <x-notif-dialog id="notif-admin-tersimpan" title="Perubahan tersimpan" tone="line" :actions="[
+        ['label' => 'Mengerti'],
+    ]">
+        <p class="m-0">Perubahan data sudah disimpan.</p>
+        <p class="m-0">Kamu dapat melanjutkan pengelolaan data.</p>
+    </x-notif-dialog>
 @endsection

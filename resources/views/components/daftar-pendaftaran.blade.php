@@ -4,6 +4,9 @@
     'syarat' => [],
     'ghostLabel',
     'solidLabel',
+    'ghostOpen' => null,
+    'solidOpen' => null,
+    'uncheckedOpen' => null,
 ])
 
 @php
@@ -122,14 +125,17 @@
     </div>
 
     <label class="mt-8 flex cursor-pointer items-center gap-3 text-base font-normal leading-[1.4] max-[761px]:items-start max-[761px]:text-[14px]">
-        <input class="size-6 shrink-0 accent-[#ed7a1c]" type="checkbox" name="kesesuaian" checked>
+        <input class="size-6 shrink-0 accent-[#ed7a1c]" id="dfs-kesesuaian" type="checkbox" name="kesesuaian" checked>
         Data dan persyaratan pengajuan sudah sesuai.
     </label>
 
     <div class="mt-[35px] flex items-center justify-end gap-[21px] max-[1101px]:mt-6 max-[1101px]:gap-3">
         <button class="h-11 w-[200px] cursor-pointer rounded-lg border border-muted bg-white text-[14px] font-bold tracking-[0.01em] text-ink max-[761px]:h-12 max-[761px]:w-auto max-[761px]:flex-1"
-                type="button">{{ $ghostLabel }}</button>
+                type="button"
+                @if ($ghostOpen) data-notif-open="{{ $ghostOpen }}" @endif>{{ $ghostLabel }}</button>
         <button class="h-[53px] w-[181px] cursor-pointer rounded-[10px] border-0 btn-primary bg-brand text-base font-semibold text-ink max-[761px]:h-12 max-[761px]:w-auto max-[761px]:flex-1"
-                type="button">{{ $solidLabel }}</button>
+                type="button"
+                @if ($solidOpen) data-notif-open="{{ $solidOpen }}" @endif
+                @if ($uncheckedOpen) data-notif-unchecked="{{ $uncheckedOpen }}" data-notif-checkbox="#dfs-kesesuaian" @endif>{{ $solidLabel }}</button>
     </div>
 </div>
