@@ -25,9 +25,9 @@
     </nav>
 
     <div @class([
-        'ml-auto flex h-[92px] items-center gap-[29px] rounded-full pr-[21px] pl-[31px] max-[1101px]:h-[72px] max-[1101px]:gap-5 max-[1101px]:pr-4 max-[1101px]:pl-[22px] max-[421px]:h-[38px] max-[421px]:gap-2.5 max-[421px]:pr-1 max-[421px]:pl-2',
-        'bg-brand' => $orange,
-        'bg-stage' => ! $orange,
+        'ml-auto flex h-[92px] items-center gap-[29px] rounded-full pr-[21px] pl-[31px] transition-colors duration-200 max-[1101px]:h-[72px] max-[1101px]:gap-5 max-[1101px]:pr-4 max-[1101px]:pl-[22px] max-[421px]:h-[38px] max-[421px]:gap-2.5 max-[421px]:pr-1 max-[421px]:pl-2',
+        'bg-brand hover:bg-brand-dark' => $orange,
+        'bg-stage hover:bg-stage-dark' => ! $orange,
     ])>
         <button class="flex size-12 items-center justify-center rounded-lg bg-danger text-white transition-colors hover:bg-danger-dark max-[1101px]:size-10 max-[1101px]:rounded-[7px] max-[421px]:size-7 max-[421px]:rounded-md"
                 type="button" aria-label="Keluar">
