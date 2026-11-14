@@ -46,7 +46,55 @@
     }
 }
 
+/* Tombol pilihan warna aksen di halaman profil */
+[data-accent-option] {
+    transition: border-color 150ms, background-color 150ms, color 150ms;
+}
+
+[data-accent-option][aria-pressed='true'] {
+    border-color: var(--color-ink-panel);
+    background-color: rgb(255 255 255 / 0.85);
+}
+
+/* Notifikasi yang sudah dibaca tampil lebih tenang dari yang belum */
+[data-notif-item][data-read='true'] [data-notif-dot] {
+    background-color: transparent;
+}
+
+[data-notif-item][data-read='true'] [data-notif-title] {
+    font-weight: 400;
+    color: #3c414a;
+}
+
 @layer base {
+    /*
+     * Preferensi warna: hanya token brand yang digeser, struktur dan kontras
+     * teks tetap sama sehingga seluruh halaman ikut berubah.
+     */
+    html[data-accent='biru'] {
+        --color-brand: #2563eb;
+        --color-brand-dark: #1d4ed8;
+        --color-brand-light: #60a5fa;
+        --color-brand-soft: #eff6ff;
+        --color-sand: #bfdbfe;
+    }
+
+    html[data-accent='hijau'] {
+        --color-brand: #16a34a;
+        --color-brand-dark: #15803d;
+        --color-brand-light: #4ade80;
+        --color-brand-soft: #f0fdf4;
+        --color-sand: #bbf7d0;
+    }
+
+    html[data-accent='ungu'] {
+        --color-brand: #7c3aed;
+        --color-brand-dark: #6d28d9;
+        --color-brand-light: #a78bfa;
+        --color-brand-soft: #f5f3ff;
+        --color-sand: #ddd6fe;
+    }
+
     html {
         -webkit-text-size-adjust: 100%;
         scroll-behavior: smooth;

@@ -86,6 +86,33 @@
                 </div>
             </section>
 
+            <section class="mt-[33px] rounded-[15px] bg-line p-[15px_24px_27px_21px] max-[901px]:p-[18px_20px_24px] max-[421px]:mt-5 max-[421px]:p-[16px_14px_22px]">
+                <h2 class="m-0 text-[24px] font-semibold leading-none text-ink-panel max-[901px]:text-[20px] max-[421px]:text-[18px]">Preferensi Tampilan</h2>
+                <p class="mt-4 text-base font-normal leading-[1.4] text-[#555b65] max-[901px]:text-[14px]">
+                    Pilih warna aksen yang dipakai tombol, tautan aktif, dan sorotan di seluruh halaman LARAS.
+                </p>
+                <hr class="mt-[25px] border-0 border-t border-[#a8aaaf]">
+
+                <div class="mt-[26px] flex flex-wrap items-center justify-between gap-5 rounded-[15px] bg-white p-[18px_19px] max-[761px]:p-4">
+                    <div class="min-w-0">
+                        <p class="m-0 text-[16px] font-semibold leading-none text-ink-panel max-[421px]:text-[15px]">Warna aksen</p>
+                        <p class="mt-2 mb-0 text-[13px] leading-[1.4] text-[#555b65]">Pilihan disimpan di perangkat ini dan langsung berlaku tanpa memuat ulang.</p>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Pilihan warna aksen">
+                        @foreach ([['oren', 'Oren', '#ed7a1c'], ['biru', 'Biru', '#2563eb'], ['hijau', 'Hijau', '#16a34a'], ['ungu', 'Ungu', '#7c3aed']] as [$value, $label, $swatch])
+                            <button class="flex items-center gap-2 rounded-full border border-line px-3.5 py-2 text-[13px] font-medium leading-none text-ink-panel hover:border-[#a8aaaf]"
+                                    type="button"
+                                    data-accent-option="{{ $value }}"
+                                    aria-pressed="{{ $value === 'oren' ? 'true' : 'false' }}">
+                                <span class="block size-3.5 rounded-full" style="background-color: {{ $swatch }}" aria-hidden="true"></span>
+                                {{ $label }}
+                            </button>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+
         </div>
     </main>
 @endsection

@@ -31,10 +31,65 @@ class Navbar extends Component
             'href' => $item['href'] ?? '#',
             'active' => $active !== null && strcasecmp($item['label'], $active) === 0,
         ], $items);
+
+        $this->notifications = $variant === 'admin' ? [
+            [
+                'title' => 'Pengajuan judul baru',
+                'body' => 'Nadra Saputra mengajukan judul skripsi dan menunggu verifikasi.',
+                'time' => '30 menit lalu',
+                'unread' => true,
+            ],
+            [
+                'title' => 'Berkas sempro masuk',
+                'body' => 'Tiga mahasiswa mengunggah berkas pendaftaran seminar proposal.',
+                'time' => '2 jam lalu',
+                'unread' => true,
+            ],
+            [
+                'title' => 'Berita acara belum lengkap',
+                'body' => 'Sempro 18 Nov 2026 belum memiliki berita acara yang diunggah.',
+                'time' => '1 hari lalu',
+                'unread' => false,
+            ],
+            [
+                'title' => 'Permintaan ganti jadwal',
+                'body' => 'Bambang Warsuta mengajukan penggeseran jadwal bimbingan.',
+                'time' => '2 hari lalu',
+                'unread' => false,
+            ],
+        ] : [
+            [
+                'title' => 'Judul proposal disetujui',
+                'body' => 'Pengajuan judul kamu sudah diverifikasi Koordinator Program Studi.',
+                'time' => '2 jam lalu',
+                'unread' => true,
+            ],
+            [
+                'title' => 'Jadwal sempro ditetapkan',
+                'body' => 'Seminar proposal: 24 November 2026, 09.00 WIB, Ruang 3.2.',
+                'time' => '5 jam lalu',
+                'unread' => true,
+            ],
+            [
+                'title' => 'Catatan bimbingan baru',
+                'body' => 'Bambang Warsuta meminta revisi Bab 2 sebelum bimbingan berikutnya.',
+                'time' => '1 hari lalu',
+                'unread' => false,
+            ],
+            [
+                'title' => 'Berkas terverifikasi',
+                'body' => 'KRS dan transkrip nilai semester 5 sudah diterima bagian akademik.',
+                'time' => '3 hari lalu',
+                'unread' => false,
+            ],
+        ];
     }
 
     /** @var array<int, array{label: string, href: string, active: bool}> */
     public array $items;
+
+    /** @var array<int, array{title: string, body: string, time: string, unread: bool}> */
+    public array $notifications;
 
     public function render(): View|Closure|string
     {
