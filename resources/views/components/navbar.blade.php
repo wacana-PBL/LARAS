@@ -39,7 +39,7 @@
         @if ($admin)
             <span class="block size-[71px] rounded-full bg-muted max-[1101px]:size-[54px] max-[421px]:size-[30px]" aria-hidden="true"></span>
         @else
-            <a class="block size-[71px] shrink-0 rounded-full bg-muted transition duration-200 hover:bg-brand-dark hover:ring-2 hover:ring-white/80 max-[1101px]:size-[54px] max-[421px]:size-[30px]"
+            <a class="block size-[71px] shrink-0 rounded-full bg-muted max-[1101px]:size-[54px] max-[421px]:size-[30px]"
                href="{{ route('profile') }}" aria-label="Buka profil" title="Profil"></a>
         @endif
     </div>
