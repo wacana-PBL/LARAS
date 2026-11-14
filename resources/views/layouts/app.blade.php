@@ -7,7 +7,6 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     {{ Vite::fonts() }}
-    @stack('styles')
 </head>
 <body>
 
