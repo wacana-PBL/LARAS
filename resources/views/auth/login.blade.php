@@ -68,7 +68,7 @@
                     </label>
 
                     <div class="mt-[59px] flex justify-end max-[421px]:mt-5">
-                        <button class="h-8 w-[110px] rounded-[15px] bg-brand text-[20px] font-medium leading-none text-black transition hover:bg-brand-dark active:translate-y-px focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#111111] max-[421px]:w-full"
+                        <button class="h-8 w-[110px] rounded-[15px] btn-primary bg-brand text-[20px] font-medium leading-none text-black focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#111111] max-[421px]:w-full"
                                 type="submit">Login</button>
                     </div>
                 </form>

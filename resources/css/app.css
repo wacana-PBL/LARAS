@@ -18,13 +18,32 @@
     --color-stage: #d1d2ca;
     --color-surface: #f2f3f4;
     --color-brand: #ed7a1c;
-    --color-brand-dark: #d96c14;
+    --color-brand-dark: #ea580c;
     --color-brand-light: #ff973d;
     --color-brand-soft: #fff5e7;
     --color-sand: #fcc781;
     --color-danger: #d25050;
     --color-danger-dark: #c24444;
     --color-success: #23a436;
+}
+
+/* Tombol utama: naik 2px + bayangan oren saat hover, kembali turun saat ditekan */
+@utility btn-primary {
+    transition-property: background-color, box-shadow, transform;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+        background-color: var(--color-brand-dark);
+        box-shadow: 0 8px 18px -4px rgb(249 115 22 / 0.45);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        box-shadow: 0 3px 8px -2px rgb(249 115 22 / 0.35);
+        transform: translateY(0);
+        transition-duration: 90ms;
+    }
 }
 
 @layer base {

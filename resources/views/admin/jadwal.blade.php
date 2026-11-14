@@ -110,7 +110,7 @@
 
                 <div class="mt-[45px] flex items-center justify-end gap-[34px] max-[1101px]:mt-6">
                     <button class="cursor-pointer border-0 bg-transparent p-0 text-base font-semibold text-ink" type="button">Batal</button>
-                    <button class="h-[30px] cursor-pointer rounded-lg border-0 bg-brand px-6 text-base font-semibold text-ink-panel transition-colors hover:bg-brand-dark max-[421px]:flex-1"
+                    <button class="h-[30px] cursor-pointer rounded-lg border-0 btn-primary bg-brand px-6 text-base font-semibold text-ink-panel max-[421px]:flex-1"
                             type="button">Kirim Pengajuan</button>
                 </div>
             </div>

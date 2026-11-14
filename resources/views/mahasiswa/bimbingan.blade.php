@@ -48,7 +48,7 @@
                         <div class="flex min-w-0 flex-col">
                             <label class="text-base font-light leading-[30px] text-ink" for="bmb-file">Upload File Draft (.pdf / .docx)</label>
                             <div class="flex h-[45px] items-center rounded-[15px] bg-white p-[3px]">
-                                <button class="h-10 shrink-0 cursor-pointer rounded-[12px] border-0 bg-brand px-[18px] text-[14px] font-semibold text-white" type="button">Pilih File</button>
+                                <button class="h-10 shrink-0 cursor-pointer rounded-[12px] border-0 btn-primary bg-brand px-[18px] text-[14px] font-semibold text-white" type="button">Pilih File</button>
                                 <input class="ml-[11px] h-10 min-w-0 flex-1 border-0 bg-transparent text-base font-extralight leading-[normal] text-ink outline-offset-2 placeholder:text-[#555b65]"
                                        id="bmb-file" type="text" placeholder="No File Selected">
                             </div>
@@ -63,7 +63,7 @@
                         <p class="m-0 flex-1 text-[14px] font-normal leading-[1.3] max-[1101px]:flex-[0_0_100%] max-[761px]:text-[13px]">Draf belum dikirim kepada dosen.</p>
                         <button class="h-14 w-[184px] cursor-pointer rounded-[15px] border border-muted bg-white text-base font-bold text-ink max-[761px]:h-12 max-[761px]:w-full max-[761px]:text-[15px]"
                                 type="button">Simpan Draf Log</button>
-                        <button class="h-14 w-[216px] cursor-pointer rounded-[15px] border-0 bg-brand text-base font-bold text-ink max-[761px]:h-12 max-[761px]:w-full max-[761px]:text-[15px]"
+                        <button class="h-14 w-[216px] cursor-pointer rounded-[15px] border-0 btn-primary bg-brand text-base font-bold text-ink max-[761px]:h-12 max-[761px]:w-full max-[761px]:text-[15px]"
                                 type="button">Kirim Logbook</button>
                     </div>
                 </form>

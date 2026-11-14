@@ -72,7 +72,7 @@
         <div class="mt-[67px] flex justify-end gap-[42px] max-[1101px]:mt-7 max-[1101px]:gap-4">
             <button class="h-[53px] w-[181px] cursor-pointer rounded-lg border border-muted bg-white text-[14px] font-bold text-ink max-[761px]:h-12 max-[761px]:w-auto max-[761px]:flex-1"
                     type="button">Simpan Draf</button>
-            <button class="h-[53px] w-[181px] cursor-pointer rounded-lg border-0 bg-brand text-base font-semibold text-ink max-[761px]:h-12 max-[761px]:w-auto max-[761px]:flex-1"
+            <button class="h-[53px] w-[181px] cursor-pointer rounded-lg border-0 btn-primary bg-brand text-base font-semibold text-ink max-[761px]:h-12 max-[761px]:w-auto max-[761px]:flex-1"
                     type="button">Kirim Pengajuan</button>
         </div>
     </x-pembimbing-shell>

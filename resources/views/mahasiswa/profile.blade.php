@@ -19,7 +19,7 @@
                     <p class="mt-4 text-base font-light leading-[1.3] text-black max-[901px]:mt-2 max-[901px]:text-[14px] max-[421px]:text-[13px]">NIM: 2507411071 &ndash; SI Teknik Informatika (Angkatan 2025)</p>
                 </div>
 
-                <button class="ml-auto h-[53px] w-[181px] shrink-0 rounded-[40px] bg-brand text-[14px] font-semibold text-black transition-colors hover:bg-brand-dark max-[901px]:h-11 max-[901px]:text-[13px] max-[421px]:ml-0 max-[421px]:w-full"
+                <button class="ml-auto h-[53px] w-[181px] shrink-0 rounded-[40px] btn-primary bg-brand text-[14px] font-semibold text-black max-[901px]:h-11 max-[901px]:text-[13px] max-[421px]:ml-0 max-[421px]:w-full"
                         type="button">Edit Biodata</button>
             </section>
 

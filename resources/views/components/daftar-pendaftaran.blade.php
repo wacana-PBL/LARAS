@@ -129,7 +129,7 @@
     <div class="mt-[35px] flex items-center justify-end gap-[21px] max-[1101px]:mt-6 max-[1101px]:gap-3">
         <button class="h-11 w-[200px] cursor-pointer rounded-lg border border-muted bg-white text-[14px] font-bold tracking-[0.01em] text-ink max-[761px]:h-12 max-[761px]:w-auto max-[761px]:flex-1"
                 type="button">{{ $ghostLabel }}</button>
-        <button class="h-[53px] w-[181px] cursor-pointer rounded-[10px] border-0 bg-brand text-base font-semibold text-ink max-[761px]:h-12 max-[761px]:w-auto max-[761px]:flex-1"
+        <button class="h-[53px] w-[181px] cursor-pointer rounded-[10px] border-0 btn-primary bg-brand text-base font-semibold text-ink max-[761px]:h-12 max-[761px]:w-auto max-[761px]:flex-1"
                 type="button">{{ $solidLabel }}</button>
     </div>
 </div>

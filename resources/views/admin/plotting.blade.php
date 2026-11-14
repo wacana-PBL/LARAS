@@ -135,7 +135,7 @@
                 <div class="flex shrink-0 gap-4 max-[1101px]:w-full max-[1101px]:justify-end">
                     <button class="h-10 cursor-pointer rounded-lg border border-[#b8b8b8] bg-white px-5 text-base font-medium leading-[1.5] text-muted max-[421px]:flex-1 max-[421px]:px-3 max-[421px]:text-[14px]"
                             type="button">Batal</button>
-                    <button class="h-10 cursor-pointer rounded-lg border-0 bg-brand px-5 text-base font-semibold leading-[1.5] text-ink transition-colors hover:bg-brand-dark max-[421px]:flex-1 max-[421px]:px-3 max-[421px]:text-[14px]"
+                    <button class="h-10 cursor-pointer rounded-lg border-0 btn-primary bg-brand px-5 text-base font-semibold leading-[1.5] text-ink max-[421px]:flex-1 max-[421px]:px-3 max-[421px]:text-[14px]"
                             type="button">Simpan Perubahan</button>
                 </div>
             </div>
@@ -198,7 +198,7 @@
                     </div>
 
                     <div class="flex max-[761px]:col-start-2">
-                        <button class="h-9 cursor-pointer rounded-lg border-0 bg-brand px-3 text-[13px] font-semibold leading-[1.5] text-ink"
+                        <button class="h-9 cursor-pointer rounded-lg border-0 btn-primary bg-brand px-3 text-[13px] font-semibold leading-[1.5] text-ink"
                                 type="button">Tambah</button>
                     </div>
                 </div>
@@ -213,7 +213,7 @@
                 <div class="flex shrink-0 gap-4 max-[1101px]:w-full max-[1101px]:justify-end">
                     <button class="h-10 cursor-pointer rounded-lg border border-[#b8b8b8] bg-white px-5 text-base font-medium leading-[1.5] text-muted max-[761px]:flex-1 max-[761px]:px-3 max-[761px]:text-[14px]"
                             type="button">Batal</button>
-                    <button class="h-10 cursor-pointer rounded-lg border-0 bg-brand px-5 text-base font-semibold leading-[1.5] text-ink hover:bg-brand-dark max-[761px]:flex-1 max-[761px]:px-3 max-[761px]:text-[14px]"
+                    <button class="h-10 cursor-pointer rounded-lg border-0 btn-primary bg-brand px-5 text-base font-semibold leading-[1.5] text-ink max-[761px]:flex-1 max-[761px]:px-3 max-[761px]:text-[14px]"
                             type="button">Simpan Rubrik</button>
                 </div>
             </div>

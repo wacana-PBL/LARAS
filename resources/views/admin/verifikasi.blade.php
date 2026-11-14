@@ -85,7 +85,7 @@
                             <div class="mt-[70px] flex justify-end gap-[27px] max-[1101px]:mt-6 max-[1101px]:gap-3.5 max-[761px]:flex-wrap">
                                 <button class="h-[41px] w-[181px] cursor-pointer rounded-lg border border-[#ff0000] bg-transparent text-base font-medium leading-[1.5] text-[#ff0000] max-[761px]:h-10 max-[761px]:w-full max-[761px]:flex-[1_1_140px] max-[761px]:text-[14px]"
                                         type="button">Tolak / Revisi</button>
-                                <button class="h-[41px] w-[181px] cursor-pointer rounded-lg border-0 bg-brand text-base font-semibold leading-[1.5] text-white transition-colors hover:bg-brand-dark max-[761px]:h-10 max-[761px]:w-full max-[761px]:flex-[1_1_140px] max-[761px]:text-[14px]"
+                                <button class="h-[41px] w-[181px] cursor-pointer rounded-lg border-0 btn-primary bg-brand text-base font-semibold leading-[1.5] text-white max-[761px]:h-10 max-[761px]:w-full max-[761px]:flex-[1_1_140px] max-[761px]:text-[14px]"
                                         type="button">Setujui</button>
                             </div>
                         </div>

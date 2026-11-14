@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="mt-[21px] flex justify-end">
-                    <button class="flex h-[52px] w-[360px] cursor-pointer items-center justify-between gap-3 rounded-[25px] border-0 bg-brand pr-[22px] pl-[70px] text-[20px] font-semibold text-white max-[1101px]:w-full max-[1101px]:px-[18px] max-[1101px]:text-[16px] max-[421px]:text-[14px]"
+                    <button class="flex h-[52px] w-[360px] cursor-pointer items-center justify-between gap-3 rounded-[25px] border-0 btn-primary bg-brand pr-[22px] pl-[70px] text-[20px] font-semibold text-white max-[1101px]:w-full max-[1101px]:px-[18px] max-[1101px]:text-[16px] max-[421px]:text-[14px]"
                             type="button">
                         TAMBAH PREFERENSI
                         <svg class="size-7 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
