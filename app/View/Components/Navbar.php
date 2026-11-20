@@ -59,6 +59,27 @@ class Navbar extends Component
             ],
         ] : [
             [
+                'title' => 'Pendaftaran sempro perlu diperbaiki',
+                'body' => 'Baca catatan pemeriksa, lalu kirim ulang pendaftaranmu.',
+                'time' => '20 menit lalu',
+                'unread' => true,
+                'href' => route('pendaftaran.sempro').'#notif-perbaikan-sempro',
+            ],
+            [
+                'title' => 'Pendaftaran sidang perlu diperbaiki',
+                'body' => 'Lampiran hasil pengujian belum diunggah.',
+                'time' => '6 jam lalu',
+                'unread' => false,
+                'href' => route('pendaftaran.skripsi').'#notif-perbaikan-skripsi',
+            ],
+            [
+                'title' => 'Pengajuan pembimbing perlu diperbaiki',
+                'body' => 'Urutan usulan dosen belum sesuai bidang topik.',
+                'time' => '2 hari lalu',
+                'unread' => false,
+                'href' => route('pengajuan').'#notif-perbaikan-pengajuan',
+            ],
+            [
                 'title' => 'Judul proposal disetujui',
                 'body' => 'Pengajuan judul kamu sudah diverifikasi Koordinator Program Studi.',
                 'time' => '2 jam lalu',
@@ -88,7 +109,7 @@ class Navbar extends Component
     /** @var array<int, array{label: string, href: string, active: bool}> */
     public array $items;
 
-    /** @var array<int, array{title: string, body: string, time: string, unread: bool}> */
+    /** @var array<int, array{title: string, body: string, time: string, unread: bool, href?: string}> */
     public array $notifications;
 
     public function render(): View|Closure|string

@@ -31,7 +31,14 @@
         <p class="m-0">Setelah semua syarat terpenuhi, kamu bisa mendaftar.</p>
     </x-notif-dialog>
 
-    <x-notif-dialog id="notif-periksa-data" title="Periksa data pendaftaran" :actions="[
+    <x-notif-dialog id="notif-perbaikan-skripsi" title="Pendaftaran perlu diperbaiki" tone="line" :actions="[
+        ['label' => 'Perbaiki data'],
+    ]">
+        <p class="m-0">Baca catatan pemeriksa sebelum mengirim ulang.</p>
+        <p class="m-0">Catatan pemeriksa: lampiran hasil pengujian belum diunggah.</p>
+    </x-notif-dialog>
+
+    <x-notif-dialog id="notif-periksa-data" top="48" title="Periksa data pendaftaran" :actions="[
         ['label' => 'Tutup pemeriksaan', 'variant' => 'secondary', 'size' => 'sm'],
         ['label' => 'Edit biodata', 'variant' => 'secondary', 'size' => 'sm', 'href' => route('profile')],
         ['label' => 'Edit topik pengajuan', 'size' => 'lg', 'href' => route('pengajuan')],

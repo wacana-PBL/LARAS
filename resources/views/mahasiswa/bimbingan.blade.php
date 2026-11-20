@@ -131,14 +131,14 @@
         </div>
     </main>
 
-    <x-notif-dialog id="notif-draf-logbook" title="Draf logbook tersimpan" :actions="[
+    <x-notif-dialog id="notif-draf-logbook" top="48" title="Draf logbook tersimpan" :actions="[
         ['label' => 'Tutup draf logbook', 'size' => 'xl'],
     ]">
         <p class="m-0">Catatan belum dikirim kepada dosen pembimbing.</p>
         <p class="m-0">Lengkapi draf, lalu pilih Kirim Logbook saat sudah siap.</p>
     </x-notif-dialog>
 
-    <x-notif-dialog id="notif-logbook-kurang" title="Lengkapi catatan bimbingan" :actions="[
+    <x-notif-dialog id="notif-logbook-kurang" top="48" title="Lengkapi catatan bimbingan" :actions="[
         ['label' => 'Lengkapi data logbook', 'size' => 'xl'],
     ]">
         <p class="m-0">Tanggal bimbingan, dosen pembimbing, dan catatan pembahasan masih kosong.</p>

@@ -5,6 +5,7 @@
     'actions' => [],
     'auto' => null,
     'delay' => 1600,
+    'top' => 44,
 ])
 
 @php
@@ -28,18 +29,23 @@
     <div data-dialog-panel
          tabindex="-1"
          @class([
-             'flex min-h-[420px] w-[800px] max-w-full flex-col px-12 pt-11 pb-[52px] max-[901px]:px-8 max-[761px]:min-h-0 max-[761px]:px-6 max-[761px]:pt-7 max-[761px]:pb-6',
+             'flex min-h-[420px] w-[800px] max-w-full flex-col px-12 pb-[52px] max-[901px]:px-8 max-[761px]:min-h-0 max-[761px]:px-6 max-[761px]:pb-6',
+             'pt-11' => $top === 44,
+             'pt-12' => $top === 48,
+             'max-[761px]:pt-7',
              'bg-stage' => $tone === 'stage',
              'bg-line' => $tone === 'line',
          ])>
         <h2 @class([
-            'm-0 text-[28px] font-bold leading-[1.45] max-[761px]:text-[22px] max-[421px]:text-[20px]',
+            'm-0 text-[28px] font-bold leading-[42px] max-[761px]:text-[22px] max-[761px]:leading-[1.35] max-[421px]:text-[20px]',
             'text-ink' => $tone === 'stage',
             'text-ink-panel' => $tone === 'line',
         ]) id="{{ $id }}-title">{{ $title }}</h2>
 
         <div @class([
-            'mt-[17px] text-[18px] leading-[32px] max-[761px]:mt-3 max-[761px]:text-[15px] max-[761px]:leading-[26px]',
+            'text-[18px] leading-[32px] max-[761px]:mt-3 max-[761px]:text-[15px] max-[761px]:leading-[26px]',
+            'mt-[20px]' => $top === 44,
+            'mt-[18px]' => $top === 48,
             'text-ink' => $tone === 'stage',
             'text-[#3f4652]' => $tone === 'line',
         ])>

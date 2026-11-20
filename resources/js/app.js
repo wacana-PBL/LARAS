@@ -166,13 +166,66 @@ document.addEventListener('click', (event) => {
         return;
     }
 
+    const link = event.target.closest('[data-notif-href]');
+
+    if (link) {
+        window.location.href = link.dataset.notifHref;
+        return;
+    }
+
     if (activeDialog && event.target === activeDialog) {
         closeDialog();
     }
 });
 
+// Tab dan Shift+Tab berputar di dalam dialog yang terbuka.
+const focusablesIn = (dialog) =>
+    [...dialog.querySelectorAll('a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])')]
+        .filter((element) => !element.hasAttribute('disabled') && element.getClientRects().length > 0);
+
 document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && activeDialog) {
+    if (!activeDialog) {
+        return;
+    }
+
+    if (event.key === 'Escape') {
         closeDialog();
+        return;
+    }
+
+    if (event.key !== 'Tab') {
+        return;
+    }
+
+    const focusables = focusablesIn(activeDialog);
+
+    if (focusables.length === 0) {
+        event.preventDefault();
+        return;
+    }
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const atPanel = document.activeElement === activeDialog.querySelector('[data-dialog-panel]');
+
+    if (event.shiftKey && (atPanel || document.activeElement === first)) {
+        event.preventDefault();
+        last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
     }
 });
+
+// Notifikasi revisi di lonceng menautkan halaman dengan #id popup, jadi popup
+// langsung terbuka saat halaman dimuat.
+const openDialogFromHash = () => {
+    const id = window.location.hash.replace('#', '');
+
+    if (id) {
+        openDialog(id);
+    }
+};
+
+window.addEventListener('hashchange', openDialogFromHash);
+openDialogFromHash();

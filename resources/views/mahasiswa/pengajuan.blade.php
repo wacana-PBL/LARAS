@@ -129,6 +129,13 @@
         <p class="m-0">Isi kedua kolom tersebut sebelum mengirim pengajuan.</p>
     </x-notif-dialog>
 
+    <x-notif-dialog id="notif-perbaikan-pengajuan" title="Pengajuan perlu diperbaiki" tone="line" :actions="[
+        ['label' => 'Perbaiki data'],
+    ]">
+        <p class="m-0">Baca catatan pemeriksa sebelum mengirim ulang.</p>
+        <p class="m-0">Catatan pemeriksa: urutan usulan dosen belum sesuai bidang topik.</p>
+    </x-notif-dialog>
+
     <x-notif-dialog id="notif-petunjuk-pengajuan" title="Petunjuk pengajuan pembimbing" tone="line" :actions="[
         ['label' => 'Mengerti'],
     ]">

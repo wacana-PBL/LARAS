@@ -35,16 +35,18 @@
 
         <ul class="m-0 max-h-[326px] list-none overflow-y-auto p-0">
             @foreach ($items as $notification)
-                <li class="flex gap-2.5 border-b border-line px-[18px] py-[13px] last:border-b-0"
+                <li class="border-b border-line last:border-b-0"
                     data-notif-item
                     @if (! $notification['unread']) data-read="true" @endif>
+                    <div class="flex gap-2.5 px-[18px] py-[13px] transition-colors @if (! empty($notification['href'])) cursor-pointer hover:bg-brand-soft @endif"
+                         @if (! empty($notification['href'])) data-notif-href="{{ $notification['href'] }}" @endif>
                     <span @class([
                         'mt-[7px] size-2 shrink-0 rounded-full',
                         'bg-brand' => $notification['unread'],
                         'bg-transparent' => ! $notification['unread'],
                     ]) data-notif-dot></span>
 
-                    <div class="min-w-0">
+                    <div class="min-w-0 flex-1">
                         <p @class([
                             'm-0 text-[14px] leading-[1.35]',
                             'font-semibold text-ink-panel' => $notification['unread'],
@@ -52,6 +54,7 @@
                         ]) data-notif-title>{{ $notification['title'] }}</p>
                         <p class="mt-1 mb-0 text-[13px] leading-[1.45] text-[#555b65]">{{ $notification['body'] }}</p>
                         <p class="mt-1.5 mb-0 text-[12px] leading-none text-slate">{{ $notification['time'] }}</p>
+                    </div>
                     </div>
                 </li>
             @endforeach
