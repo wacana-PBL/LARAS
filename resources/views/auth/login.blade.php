@@ -1,74 +1,47 @@
-@extends('layouts.app')
+<x-guest-layout>
+    <!-- Session Status -->
+    <x-auth-session-status class="mb-4" :status="session('status')" />
 
-@section('title', 'Login — LARAS')
+    <form method="POST" action="{{ route('login') }}">
+        @csrf
 
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('css/laras-login.css') }}">
-@endpush
-
-@section('content')
-    <main class="laras-page">
-        <div class="laras-shell">
-            <header class="laras-header">
-                <h1 class="laras-title">LARAS</h1>
-                <p class="laras-subtitle">
-                    Layanan Administrasi dan Rangkaian<br>
-                    Seminar Proposal &amp; Skripsi
-                </p>
-            </header>
-
-            <section class="laras-card" aria-labelledby="laras-card-title">
-                <h2 id="laras-card-title" class="laras-card-title">Masuk ke akun anda</h2>
-
-                <form class="laras-form" onsubmit="return false;">
-                    <div class="laras-field">
-                        <label class="laras-label" for="nama">Nama</label>
-                        <input
-                            class="laras-input"
-                            type="text"
-                            id="nama"
-                            name="nama"
-                            placeholder="Masukkan nama anda"
-                            autocomplete="name"
-                        >
-                    </div>
-
-                    <div class="laras-field">
-                        <label class="laras-label" for="email">Email</label>
-                        <input
-                            class="laras-input"
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Masukkan email anda"
-                            autocomplete="email"
-                        >
-                    </div>
-
-                    <div class="laras-field">
-                        <label class="laras-label" for="password">Password</label>
-                        <input
-                            class="laras-input"
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Masukkan password anda"
-                            autocomplete="current-password"
-                        >
-                    </div>
-
-                    <label class="laras-consent" for="consent">
-                        <input class="laras-checkbox" type="checkbox" id="consent" name="consent">
-                        <span class="laras-consent-text">
-                            Saya mengakui bahwa akun yang saya gunakan merupakan milik sendiri, dan bukan mengambil atau mencuri identitas dari orang lain
-                        </span>
-                    </label>
-
-                    <div class="laras-actions">
-                        <button class="laras-submit" type="submit">Login</button>
-                    </div>
-                </form>
-            </section>
+        <!-- Email Address -->
+        <div>
+            <x-input-label for="email" :value="__('Email')" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
-    </main>
-@endsection
+
+        <!-- Password -->
+        <div class="mt-4">
+            <x-input-label for="password" :value="__('Password')" />
+
+            <x-text-input id="password" class="block mt-1 w-full"
+                            type="password"
+                            name="password"
+                            required autocomplete="current-password" />
+
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        </div>
+
+        <!-- Remember Me -->
+        <div class="block mt-4">
+            <label for="remember_me" class="inline-flex items-center">
+                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
+                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
+            </label>
+        </div>
+
+        <div class="flex items-center justify-end mt-4">
+            @if (Route::has('password.request'))
+                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
+                    {{ __('Forgot your password?') }}
+                </a>
+            @endif
+
+            <x-primary-button class="ms-3">
+                {{ __('Log in') }}
+            </x-primary-button>
+        </div>
+    </form>
+</x-guest-layout>
