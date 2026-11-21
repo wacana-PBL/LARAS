@@ -1,20 +1,48 @@
 <?php
 
+use App\Http\Controllers\DosenController;
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::middleware('auth')->group(function (){
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    Route::middleware('Role:mahasiswa')
+        ->prefix('mahasiswa')
+        ->controller(MahasiswaController::class)
+        ->group(function (){
+            Route::get('/dashboard', 'index')->name('dashboard');
+            Route::post('/create', 'store')->name('create');
+        });
+    Route::middleware('Role:dosen')
+        ->prefix('dosen')
+        ->name('dosen.')
+        ->controller(DosenController::class)
+        ->group(function (){
+            Route::get('/dashboard', 'index')->name('dashboard');
+        });
+    Route::middleware('Role:admin')
+        ->prefix('admin')
+        ->name('admin.')
+        ->group(function (){
+            Route::get('/dashboard', [ProfileController::class, 'index'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+            //Dosen Routes
+            Route::get('/display/dosen', [DosenController::class, 'index'])->name('dosen');
+            Route::get('/create/dosen/form',[DosenController::class,'create'])->name('create.dosen.form');
+            Route::post('/store/dosen',[DosenController::class,'store'])->name('store.dosen');
+            Route::get('/edit/dosen/{id}', [DosenController::class, 'edit'])->name('edit.dosen');
+            Route::put('/update/dosen/{id}', [DosenController::class, 'update'])->name('update.dosen');
+            Route::delete('/delete/dosen/{id}', [DosenController::class, 'destroy'])->name('delete.dosen');
+
+            //Mahasiswa Routes
+            Route::post('/store/mahasiswa',[MahasiswaController::class,'store'])->name('store.mahasiswa');
+
+
+
+
+        });
+    });
+
 
 require __DIR__.'/auth.php';
