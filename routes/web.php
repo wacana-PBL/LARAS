@@ -45,4 +45,14 @@ Route::middleware('auth')->group(function (){
     });
 
 
-require __DIR__.'/auth.php';
+
+// Route Khusus Role Dosen
+Route::prefix('dosen')->name('dosen.')->group(function () {
+    Route::get('/dashboard', fn() => view('dosen.dashboard'))->name('dashboard');
+    Route::get('/bimbingan', fn() => view('dosen.bimbingan'))->name('bimbingan');
+    Route::get('/pengajuan', fn() => view('dosen.pengajuan'))->name('pengajuan');
+    Route::get('/jadwal', fn() => view('dosen.jadwal'))->name('jadwal');
+    Route::get('/profil', fn() => view('dosen.profil'))->name('profil');
+});
+
+//require __DIR__.'/auth.php';
