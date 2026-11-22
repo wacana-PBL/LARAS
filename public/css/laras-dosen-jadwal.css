@@ -1,0 +1,109 @@
+.schedule {
+    margin: 54px 6px 66px 5px;
+}
+.schedule section + section { margin-top: 59px; }
+.schedule-heading {
+    display: flex;
+    align-items: center;
+    background: url('../images/dosen/jadwal/pemisah-jadwal.svg') center / 100% 1px no-repeat;
+}
+.schedule-heading.found { justify-content: flex-end; }
+.schedule-heading h1, .schedule-heading h2 {
+    width: min(417px, 100%);
+    padding: 7px 12px;
+    min-height: 52px;
+    border: 1px solid #0008;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 4px 4px #0004;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.schedule-empty, .agenda {
+    margin-top: 28px;
+    background: var(--panel);
+    border-radius: 15px;
+    box-shadow: 0 10px 4px #0004;
+}
+.schedule-empty {
+    min-height: 277px;
+    padding: 109px 24px 45px;
+    text-align: center;
+    font-weight: 500;
+    color: #000b;
+}
+.empty-title, .agenda h3 { font-size: 1.5rem; font-weight: 500; color: black; }
+.schedule-empty button, .confirmed {
+    display: inline-block;
+    width: 185px;
+    max-width: 100%;
+    padding: 3px 10px;
+    background: var(--accent);
+    font-weight: 600;
+    text-align: center;
+}
+.schedule-empty button { margin-top: 33px; border: 0; border-radius: 8px; color: #20242b; cursor: pointer; }
+.schedule-empty button:hover { background: #de6f17; }
+.agenda header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 14px 33px 15px 27px;
+    min-height: 66px;
+    border-radius: 15px;
+    box-shadow: 0 10px 4px white;
+}
+.confirmed { border-radius: 50px; color: white; }
+.agenda-body {
+    display: grid;
+    grid-template-columns: minmax(0, 474fr) minmax(0, 721fr);
+    gap: 3.5%;
+    padding: 32px 2.5% 28px 3.34%;
+}
+.agenda dl, .agenda dd { margin: 0; }
+.agenda dt { font-size: 1rem; font-weight: 600; text-transform: uppercase; color: #0008; }
+.meeting { position: relative; padding-right: 12px; }
+.meeting::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background: url('../images/dosen/jadwal/pemisah-agenda.svg') center / 100% 100% no-repeat;
+}
+.meeting dd { font-weight: 600; font-size: 1.5rem; }
+.meeting div + div { margin-top: 28px; }
+.meeting div:last-child { margin-top: 40px; }
+.meeting div:last-child dd { margin-top: 8px; font-size: 1.25rem; }
+.meeting mark { display: inline-block; margin-top: 8px; padding: 7px 5px; background: #fcc781cc; color: var(--accent); font-weight: 700; border-radius: 8px; }
+.research-title dd, .examiners div {
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 4px #0004;
+}
+.research-title dd { padding: 7px 10px; min-height: 74px; font-size: 1.25rem; font-weight: 500; }
+.agenda .examiners { margin-top: 30px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px 19px; }
+.examiners div { min-height: 74px; padding: 6px 10px; }
+.examiners dt { font-size: .8125rem; }
+.examiners dd { font-weight: 500; }
+.advisor { grid-area: 1 / 2 / span 2; }
+
+@media (max-width: 800px) {
+    .schedule { margin: 28px 0 40px; }
+    .schedule section + section { margin-top: 36px; }
+    .schedule-empty { min-height: 0; padding: 44px 18px; }
+    .agenda-body { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 24px 18px; }
+    .meeting::after { display: none; }
+    .meeting div + div, .meeting div:last-child { margin-top: 16px; }
+}
+@media (max-width: 550px) {
+    .schedule-heading h1, .schedule-heading h2, .empty-title, .agenda h3 { font-size: 1.25rem; }
+    .schedule-empty button { min-height: 44px; margin-top: 20px; }
+    .agenda header { padding: 16px 18px; }
+    .agenda .examiners { grid-template-columns: 1fr; gap: 10px; margin-top: 16px; }
+    .advisor { grid-area: auto; }
+}
