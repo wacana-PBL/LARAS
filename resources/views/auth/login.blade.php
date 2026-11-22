@@ -17,29 +17,25 @@
                      aria-labelledby="laras-card-title">
                 <h2 id="laras-card-title" class="text-[20px] font-medium leading-[1.2] text-black">Masuk ke akun anda</h2>
 
-                <form class="mt-[61px]" onsubmit="return false;">
-                    <div>
-                        <label class="mb-4 block text-[18px] font-normal leading-[1.2] text-black" for="nama">Nama</label>
-                        <input
-                            class="block h-[49px] w-full rounded-[15px] border border-transparent bg-white px-[22px] text-base font-light text-black transition-shadow placeholder:text-black focus:border-brand focus:shadow-[0_0_0_3px_rgba(237,122,28,0.18)] focus:outline-none"
-                            type="text"
-                            id="nama"
-                            name="nama"
-                            placeholder="Masukkan nama anda"
-                            autocomplete="name"
-                        >
-                    </div>
+                <x-auth-session-status class="mb-4" :status="session('status')" />
 
-                    <div class="mt-[30px] max-[421px]:mt-4">
+                <form class="mt-[61px]" method="POST" action="{{ route('login') }}">
+                    @csrf
+
+                    <div>
                         <label class="mb-4 block text-[18px] font-normal leading-[1.2] text-black" for="email">Email</label>
                         <input
                             class="block h-[49px] w-full rounded-[15px] border border-transparent bg-white px-[22px] text-base font-light text-black transition-shadow placeholder:text-black focus:border-brand focus:shadow-[0_0_0_3px_rgba(237,122,28,0.18)] focus:outline-none"
                             type="email"
                             id="email"
                             name="email"
+                            value="{{ old('email') }}"
                             placeholder="Masukkan email anda"
-                            autocomplete="email"
+                            required
+                            autofocus
+                            autocomplete="username"
                         >
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
                     <div class="mt-[30px] max-[421px]:mt-4">
@@ -50,8 +46,10 @@
                             id="password"
                             name="password"
                             placeholder="Masukkan password anda"
+                            required
                             autocomplete="current-password"
                         >
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
                     <label class="mt-[18px] flex cursor-pointer items-start gap-[19px] max-[421px]:mt-5" for="consent">
@@ -66,6 +64,12 @@
                             Saya mengakui bahwa akun yang saya gunakan merupakan milik sendiri, dan bukan mengambil atau mencuri identitas dari orang lain
                         </span>
                     </label>
+
+                    @if (Route::has('password.request'))
+                        <a class="mt-4 block text-[15px] text-gray-600 underline" href="{{ route('password.request') }}">
+                            {{ __('Forgot your password?') }}
+                        </a>
+                    @endif
 
                     <div class="mt-[59px] flex justify-end max-[421px]:mt-5">
                         <button class="h-8 w-[110px] rounded-[15px] btn-primary bg-brand text-[20px] font-medium leading-none text-black focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#111111] max-[421px]:w-full"

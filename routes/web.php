@@ -1,79 +1,58 @@
 <?php
 
+use App\Http\Controllers\DosenController;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Publik
-|--------------------------------------------------------------------------
-*/
-Route::get('/', function () {
-    return view('home');
+Route::middleware('auth')->group(function (){
+
+    Route::middleware('Role:mahasiswa')
+        ->prefix('mahasiswa')
+        ->controller(MahasiswaController::class)
+        ->group(function (){
+            Route::get('/dashboard', 'index')->name('dashboard');
+            Route::post('/create', 'store')->name('create');
+        });
+    Route::middleware('Role:dosen')
+        ->prefix('dosen')
+        ->name('dosen.')
+        ->controller(DosenController::class)
+        ->group(function (){
+            Route::get('/dashboard', 'index')->name('dashboard');
+        });
+    Route::middleware('Role:admin')
+        ->prefix('admin')
+        ->name('admin.')
+        ->group(function (){
+            Route::get('/dashboard', [ProfileController::class, 'index'])->name('dashboard');
+
+            //Dosen Routes
+            Route::get('/display/dosen', [DosenController::class, 'index'])->name('dosen');
+            Route::get('/create/dosen/form',[DosenController::class,'create'])->name('create.dosen.form');
+            Route::post('/store/dosen',[DosenController::class,'store'])->name('store.dosen');
+            Route::get('/edit/dosen/{id}', [DosenController::class, 'edit'])->name('edit.dosen');
+            Route::put('/update/dosen/{id}', [DosenController::class, 'update'])->name('update.dosen');
+            Route::delete('/delete/dosen/{id}', [DosenController::class, 'destroy'])->name('delete.dosen');
+
+            //Mahasiswa Routes
+            Route::post('/store/mahasiswa',[MahasiswaController::class,'store'])->name('store.mahasiswa');
+
+
+
+
+        });
+    });
+
+
+
+// Route Khusus Role Dosen
+Route::prefix('dosen')->name('dosen.')->group(function () {
+    Route::get('/dashboard', fn() => view('dosen.dashboard'))->name('dashboard');
+    Route::get('/bimbingan', fn() => view('dosen.bimbingan'))->name('bimbingan');
+    Route::get('/pengajuan', fn() => view('dosen.pengajuan'))->name('pengajuan');
+    Route::get('/jadwal', fn() => view('dosen.jadwal'))->name('jadwal');
+    Route::get('/profil', fn() => view('dosen.profil'))->name('profil');
 });
 
-/*
-|--------------------------------------------------------------------------
-| Auth
-|--------------------------------------------------------------------------
-*/
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-
-/*
-|--------------------------------------------------------------------------
-| Mahasiswa
-|--------------------------------------------------------------------------
-*/
-Route::get('/dashboard', function () {
-    return view('mahasiswa.dashboard');
-})->name('dashboard');
-
-Route::get('/profile', function () {
-    return view('mahasiswa.profile');
-})->name('profile');
-
-Route::get('/bimbingan', function () {
-    return view('mahasiswa.bimbingan');
-})->name('bimbingan');
-
-Route::get('/pengajuan', function () {
-    return view('mahasiswa.pengajuan');
-})->name('pengajuan');
-
-Route::get('/pendaftaran-sempro', function () {
-    return view('mahasiswa.pendaftaran-sempro');
-})->name('pendaftaran.sempro');
-
-Route::get('/pendaftaran-skripsi', function () {
-    return view('mahasiswa.pendaftaran-skripsi');
-})->name('pendaftaran.skripsi');
-
-Route::get('/jadwal', function () {
-    return view('mahasiswa.jadwal');
-})->name('jadwal');
-
-/*
-|--------------------------------------------------------------------------
-| Admin
-|--------------------------------------------------------------------------
-*/
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-})->name('admin.dashboard');
-
-Route::get('/admin/verifikasi', function () {
-    return view('admin.verifikasi');
-})->name('admin.verifikasi');
-
-Route::get('/admin/jadwal', function () {
-    return view('admin.jadwal');
-})->name('admin.jadwal');
-
-Route::get('/admin/plotting-dosen', function () {
-    return view('admin.plotting');
-})->name('admin.plotting');
-
-Route::get('/admin/berita-acara', function () {
-    return view('admin.berita-acara');
-})->name('admin.berita-acara');
+//require __DIR__.'/auth.php';
