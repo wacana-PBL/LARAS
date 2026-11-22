@@ -1,47 +1,82 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+@extends('layouts.app')
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+@section('title', 'Login — LARAS')
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+@section('content')
+    <main class="flex min-h-screen flex-col items-center bg-white pt-[61px] pr-[78px] pl-6 font-sans text-[#111111] max-[769px]:px-5 max-[769px]:pt-14 max-[421px]:px-4 max-[421px]:pt-10">
+        <div class="w-full max-w-[650px]">
+            <header class="mb-11 text-center max-[769px]:mb-8">
+                <h1 class="font-display text-[64px] font-normal leading-[1.09] text-black max-[769px]:text-[38px] max-[421px]:text-[31px]">LARAS</h1>
+                <p class="mx-auto mt-[17px] max-w-[520px] text-[24px] font-light leading-normal text-black max-[769px]:text-[14px] max-[769px]:leading-[1.65] max-[421px]:text-[13px]">
+                    Layanan Administrasi dan Rangkaian<br>
+                    Seminar Proposal &amp; Skripsi
+                </p>
+            </header>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <section class="w-full rounded-[15px] bg-surface pt-[35px] pr-[35px] pb-12 pl-[47px] max-[769px]:rounded-2xl max-[769px]:p-[26px_22px_24px] max-[421px]:rounded-[14px] max-[421px]:p-[22px_18px_20px]"
+                     aria-labelledby="laras-card-title">
+                <h2 id="laras-card-title" class="text-[20px] font-medium leading-[1.2] text-black">Masuk ke akun anda</h2>
 
-            <x-text-input id="password" class="block mt-1 w-full"
+                <x-auth-session-status class="mb-4" :status="session('status')" />
+
+                <form class="mt-[61px]" method="POST" action="{{ route('login') }}">
+                    @csrf
+
+                    <div>
+                        <label class="mb-4 block text-[18px] font-normal leading-[1.2] text-black" for="email">Email</label>
+                        <input
+                            class="block h-[49px] w-full rounded-[15px] border border-transparent bg-white px-[22px] text-base font-light text-black transition-shadow placeholder:text-black focus:border-brand focus:shadow-[0_0_0_3px_rgba(237,122,28,0.18)] focus:outline-none"
+                            type="email"
+                            id="email"
+                            name="email"
+                            value="{{ old('email') }}"
+                            placeholder="Masukkan email anda"
+                            required
+                            autofocus
+                            autocomplete="username"
+                        >
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    </div>
+
+                    <div class="mt-[30px] max-[421px]:mt-4">
+                        <label class="mb-4 block text-[18px] font-normal leading-[1.2] text-black" for="password">Password</label>
+                        <input
+                            class="block h-[49px] w-full rounded-[15px] border border-transparent bg-white px-[22px] text-base font-light text-black transition-shadow placeholder:text-black focus:border-brand focus:shadow-[0_0_0_3px_rgba(237,122,28,0.18)] focus:outline-none"
                             type="password"
+                            id="password"
                             name="password"
-                            required autocomplete="current-password" />
+                            placeholder="Masukkan password anda"
+                            required
+                            autocomplete="current-password"
+                        >
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                    <label class="mt-[18px] flex cursor-pointer items-start gap-[19px] max-[421px]:mt-5" for="consent">
+                        <span class="relative mt-1 inline-flex size-[25px] shrink-0">
+                            <input class="peer size-full cursor-pointer appearance-none rounded-none bg-[#d9d9d9] transition-colors checked:bg-[#f58220] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f58220]"
+                                   type="checkbox" id="consent" name="consent">
+                            <svg class="pointer-events-none absolute inset-0 m-auto size-3 opacity-0 peer-checked:opacity-100" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                                <path d="M1.5 6.2 4.4 9.1 10.5 2.9" stroke="#111111" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <span class="text-[15px] font-light leading-[1.6] text-black">
+                            Saya mengakui bahwa akun yang saya gunakan merupakan milik sendiri, dan bukan mengambil atau mencuri identitas dari orang lain
+                        </span>
+                    </label>
+
+                    @if (Route::has('password.request'))
+                        <a class="mt-4 block text-[15px] text-gray-600 underline" href="{{ route('password.request') }}">
+                            {{ __('Forgot your password?') }}
+                        </a>
+                    @endif
+
+                    <div class="mt-[59px] flex justify-end max-[421px]:mt-5">
+                        <button class="h-8 w-[110px] rounded-[15px] btn-primary bg-brand text-[20px] font-medium leading-none text-black focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#111111] max-[421px]:w-full"
+                                type="submit">Login</button>
+                    </div>
+                </form>
+            </section>
         </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    </main>
+@endsection
