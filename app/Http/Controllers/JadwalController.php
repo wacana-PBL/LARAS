@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jadwal;
+use App\Models\Pengajuan;
+use App\Models\Dosen;
 use App\Http\Requests\StoreJadwalRequest;
 use App\Http\Requests\UpdateJadwalRequest;
 
@@ -13,7 +15,8 @@ class JadwalController extends Controller
      */
     public function index()
     {
-        //
+        $jadwals = jadwal::with (['Pengajuan', 'Dosen'])->get();
+        return view ('jadwal.index', compact ('jadwals'));
     }
 
     /**
@@ -21,7 +24,9 @@ class JadwalController extends Controller
      */
     public function create()
     {
-        //
+        $pengajuans = Pengajuan::all();
+        $dosens = Dosen::all();
+        return view('jadwal.create', compact('pengajuans', 'dosens'));
     }
 
     /**
@@ -29,7 +34,8 @@ class JadwalController extends Controller
      */
     public function store(StoreJadwalRequest $request)
     {
-        //
+        Jadwal::create($request->validated());
+        return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil ditambahkan.');
     }
 
     /**
@@ -37,7 +43,8 @@ class JadwalController extends Controller
      */
     public function show(Jadwal $jadwal)
     {
-        //
+        $jadwal->load(['Pengajuan', 'Dosen']);
+        return view ('jadwal.show', compact('jadwal'));
     }
 
     /**
@@ -45,7 +52,9 @@ class JadwalController extends Controller
      */
     public function edit(Jadwal $jadwal)
     {
-        //
+        $pengajuans = Pengajuan::all();
+        $dosens = Dosen::all();
+        return view('jadwal.edit', compact('jadwal', 'pengajuans', 'dosens'));
     }
 
     /**
@@ -53,7 +62,8 @@ class JadwalController extends Controller
      */
     public function update(UpdateJadwalRequest $request, Jadwal $jadwal)
     {
-        //
+        $jadwal->update($request->validated());
+        return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil diperbarui.');
     }
 
     /**
@@ -61,6 +71,7 @@ class JadwalController extends Controller
      */
     public function destroy(Jadwal $jadwal)
     {
-        //
+        $jadwal->delete();
+        return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil dihapus.');
     }
 }
