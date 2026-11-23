@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 #[Fillable(['id_dosen', 'id_pengajuan', 'role', 'status_plotting'])]
 class Plotting_Dosen_Pengajuan extends Model
 {
-    /** @use HasFactory<\Database\Factories\PlottingDosenPengajuanFactory> */
+    /** @use HasFactory<\Database\Factories\Plotting_Dosen_PengajuanFactory> */
     use HasFactory;
 
     public function dosen()

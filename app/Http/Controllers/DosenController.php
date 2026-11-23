@@ -66,9 +66,9 @@ class DosenController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Dosen $dosen, $id)
+    public function edit(Dosen $dosen)
     {
-       $dosen = Dosen::with('user')->findOrFail($id);
+       $dosen = Dosen::with('user')->findOrFail($dosen->id);
 
         return view('dosen.show', compact('dosen'));
     }
@@ -102,15 +102,15 @@ class DosenController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Dosen $dosen, $id)
+    public function destroy(Dosen $dosen)
     {
-        if($id) {
-            $dosen = Dosen::with('user')->findOrFail($id);
+        if($dosen->id) {
+            $dosen = Dosen::with('user')->findOrFail($dosen->id);
             DB::transaction(function () use ($dosen) {
                 $dosen->user->delete();
                 $dosen->delete();
             });
-        }elseif(!$id) {
+        }elseif(!$dosen->id) {
         DB::transaction(function () {
             $userIDs = Dosen::pluck('id_pengguna')->filter();
             Dosen::query()->delete();

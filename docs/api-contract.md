@@ -139,7 +139,6 @@ Item logbook: `id, sesi_ke, tanggal, dosen{nidn,nama}, topik, catatan, file{url,
 | GET | `/mahasiswa/pengajuan` | – (list + status aktif) |
 | POST | `/mahasiswa/pengajuan` | `jenis` (`pembimbing`), `judul`, `abstrak`, `referensi`, `usulan_dosen_ids[]` |
 | PUT | `/mahasiswa/pengajuan/{id}` | field sama (draft) |
-| POST | `/mahasiswa/pengajuan/{id}/submit` | – |
 
 ### 3.5 Pendaftaran sempro / skripsi
 

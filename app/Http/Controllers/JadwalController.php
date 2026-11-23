@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DeleteJadwalRequest;
 use App\Models\Jadwal;
-use App\Models\Pengajuan;
 use App\Models\Dosen;
 use App\Http\Requests\StoreJadwalRequest;
 use App\Http\Requests\UpdateJadwalRequest;
 use App\Http\Requests\ViewJadwalRequest;
 use App\Models\Mahasiswa;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class JadwalController extends Controller
 {
@@ -36,17 +36,13 @@ class JadwalController extends Controller
      */
     public function store(StoreJadwalRequest $request)
     {
-        $validated = $request->validate([
-            'id_pengajuan' => 'required|exists:pengajuans,id',
-            'tanggal_jadwal' => 'required|date',
-            'waktu_mulai' => 'required|date_format:H:i',
-            'waktu_selesai' => 'required|date_format:H:i|after:waktu_mulai',
-            'lokasi_jadwal' => 'required|string|max:255',
-            'id_dosen' => 'required|exists:dosens,id',
-        ]);
+        $validated = $request->validated();
 
         $lokasiJadwalExists = Jadwal::where('tanggal_jadwal', $validated['tanggal_jadwal'])
         ->where('lokasi_jadwal', $validated['lokasi_jadwal'])
+        ->whereHas('pengajuan', function($query){
+            $query->where('status_pengajuan', 'approved');
+        })
         ->exists();
 
         $jadwalExists = Jadwal::where('id_pengajuan', $validated['id_pengajuan'])
@@ -64,7 +60,13 @@ class JadwalController extends Controller
         }
         Jadwal::create($validated);
 
-        return redirect()->route('admin.jadwal')->with('success', 'Jadwal berhasil ditambahkan.');
+        $route = match (Auth::user()->role) {
+            'admin'     => 'admin.dashboard',
+            'mahasiswa' => 'mahasiswa.dashboard',
+            default     => 'login',
+};
+
+        return redirect()->route($route)->with('success', 'Jadwal berhasil ditambahkan.');
     }
 
     /**
@@ -131,9 +133,9 @@ class JadwalController extends Controller
     public function destroy(DeleteJadwalRequest $request, Jadwal $jadwal)
     {
         $request->validated();
-
-        $jadwal = Jadwal::findOrFail($jadwal->id);
         $jadwal->delete();
+        $jadwal->pengajuan?->delete();
+
         return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil dihapus.');
     }
 }

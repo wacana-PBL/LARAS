@@ -23,7 +23,12 @@ class StoreJadwalRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id_pengajuan' => 'required|exists:pengajuans,id',
+            'tanggal_jadwal' => 'required|date',
+            'waktu_mulai' => 'required|date_format:H:i',
+            'waktu_selesai' => 'required|date_format:H:i|after:waktu_mulai',
+            'lokasi_jadwal' => 'required|string|max:255',
+            'id_dosen' => 'required|exists:dosens,id',
         ];
     }
 }
