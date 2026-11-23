@@ -240,7 +240,7 @@ Detail item: `id, mahasiswa{nama,nim,prodi}, jenis, judul, pembimbing[], dokumen
 | Method | Endpoint | Body / Query |
 |---|---|---|
 | GET | `/admin/jadwal?bulan=2026-10` | papan jadwal per hari |
-| GET | `/admin/jadwal/antrean` | pendaftaran `diverifikasi` yang siap dijadwalkan |
+| GET | `/admin/pengajuan/antrean` | pendaftaran `diverifikasi` yang siap dijadwalkan |
 | POST | `/admin/jadwal` | `pendaftaran_id`, `tanggal`, `mulai`, `selesai`, `ruangan_id`, `penguji_ids[]` |
 | PUT | `/admin/jadwal/{id}` | field sama |
 | DELETE | `/admin/jadwal/{id}` | – |

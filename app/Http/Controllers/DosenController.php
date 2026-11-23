@@ -76,14 +76,14 @@ class DosenController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDosenRequest $request, Dosen $dosen, $id)
+    public function update(UpdateDosenRequest $request, Dosen $dosen)
     {
         $validated = $request->validate([
             'nama_dosen' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $dosen->user->id,
             'password' => 'required|string|min:8',
         ]);
-        $dosen = Dosen::with('user')->findOrFail($id);
+        $dosen = Dosen::with('user')->findOrFail($dosen->id);
 
         DB::transaction(function () use ($validated, $dosen) {
             $dosen->user->update([

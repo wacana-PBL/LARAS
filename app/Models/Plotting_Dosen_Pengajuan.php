@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-#[Fillable(['id_dosen', 'id_pengajuan'])]
+#[Fillable(['id_dosen', 'id_pengajuan', 'role', 'status_plotting'])]
 class Plotting_Dosen_Pengajuan extends Model
 {
     /** @use HasFactory<\Database\Factories\PlottingDosenPengajuanFactory> */

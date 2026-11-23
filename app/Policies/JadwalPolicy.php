@@ -13,7 +13,7 @@ class JadwalPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,6 +21,13 @@ class JadwalPolicy
      */
     public function view(User $user, Jadwal $jadwal): bool
     {
+        if($user->role === 'admin') {
+            return true;
+        }elseif($user->role === 'dosen') {
+            return $jadwal->dosen->id_pengguna === $user->id;
+        }elseif($user->role === 'mahasiswa') {
+            return $jadwal->pengajuan?->mahasiswa->id_pengguna === $user->id;
+        }
         return false;
     }
 
@@ -29,7 +36,10 @@ class JadwalPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        if($user->role === 'dosen'){
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -37,6 +47,10 @@ class JadwalPolicy
      */
     public function update(User $user, Jadwal $jadwal): bool
     {
+        if($user->role === 'admin') {
+            return true;
+        }
+
         return false;
     }
 
@@ -45,6 +59,9 @@ class JadwalPolicy
      */
     public function delete(User $user, Jadwal $jadwal): bool
     {
+        if($user->role === 'admin') {
+            return true;
+        }
         return false;
     }
 
@@ -53,6 +70,9 @@ class JadwalPolicy
      */
     public function restore(User $user, Jadwal $jadwal): bool
     {
+        if($user->role === 'admin') {
+            return true;
+        }
         return false;
     }
 
