@@ -15,7 +15,7 @@ class JadwalController extends Controller
      */
     public function index()
     {
-        $jadwals = jadwal::with (['Pengajuan', 'Dosen'])->get();
+        $jadwals = Jadwal::with(['pengajuan', 'dosen'])->get();
         return view ('jadwal.index', compact ('jadwals'));
     }
 
@@ -43,7 +43,7 @@ class JadwalController extends Controller
      */
     public function show(Jadwal $jadwal)
     {
-        $jadwal->load(['Pengajuan', 'Dosen']);
+        $jadwal->load(['pengajuan', 'dosen']);
         return view ('jadwal.show', compact('jadwal'));
     }
 

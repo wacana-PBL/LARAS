@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable(['nama_mahasiswa', 'id_pengguna'])]
 class Mahasiswa extends Model
@@ -12,12 +14,12 @@ class Mahasiswa extends Model
     /** @use HasFactory<\Database\Factories\MahasiswaFactory> */
     use HasFactory;
 
-    public function pengajuan()
+    public function pengajuan(): HasMany
     {
         return $this->hasMany(Pengajuan::class, 'id_mahasiswa', 'id');
     }
-    public function User()
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'id', 'id_pengguna');
+        return $this->belongsTo(User::class, 'id_pengguna', 'id');
     }
 }

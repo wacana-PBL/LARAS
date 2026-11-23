@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('skripsis', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('id_pengajuan')->constrained('pengajuans');
+            $table->foreignId('id_pengajuan')->unique()->constrained('pengajuans')->cascadeOnDelete();
             $table->dateTime('waktu_mulai');
             $table->dateTime('waktu_selesai');
             $table->string('lokasi_ruangan');

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('dosens', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('id_pengguna')->constrained('users');
+            $table->foreignId('id_pengguna')->unique()->constrained('users')->cascadeOnDelete();
             $table->string('nama_dosen');
             $table->integer('kuota_bimbingan');
         });

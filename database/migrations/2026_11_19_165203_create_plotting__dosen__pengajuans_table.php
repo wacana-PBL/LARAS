@@ -16,7 +16,8 @@ return new class extends Migration
             $table->timestamps();
             $table->enum('peran_dosen', ['pembimbing', 'penguji']);
             $table->foreignId('id_dosen')->constrained('dosens');
-            $table->foreignId('id_pengajuan')->constrained('pengajuans');
+            $table->foreignId('id_pengajuan')->constrained('pengajuans')->cascadeOnDelete();
+            $table->unique(['id_dosen', 'id_pengajuan', 'peran_dosen'], 'plotting_assignment_unique');
         });
     }
 
