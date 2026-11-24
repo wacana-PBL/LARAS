@@ -13,9 +13,48 @@ use App\Http\Requests\UpdatePengajuanRequest;
 use App\Http\Requests\UpdateSkripsiRequest;
 use App\Models\Jadwal;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PengajuanController extends Controller
 {
+    public function queue()
+    {
+        $pengajuans = Pengajuan::with(['mahasiswa', 'plotting_dosen_pengajuan.dosen', 'konsultasi'])
+            ->where('is_active', true)
+            ->where('status_pengajuan', 'pending')
+            ->latest()
+            ->paginate(10);
+
+        return view('admin.verifikasi', compact('pengajuans'));
+    }
+
+    public function detail(Pengajuan $pengajuan)
+    {
+        $pengajuan->load(['mahasiswa', 'plotting_dosen_pengajuan.dosen', 'konsultasi', 'dokumen']);
+
+        return view('admin.verifikasi-detail', compact('pengajuan'));
+    }
+
+    public function decide(Request $request, Pengajuan $pengajuan)
+    {
+        $validated = $request->validate([
+            'status_pengajuan' => ['required', Rule::in(['approved', 'rejected'])],
+            'alasan_penolakan' => ['required_if:status_pengajuan,rejected', 'nullable', 'string', 'max:2000'],
+        ]);
+
+        if ($pengajuan->status_pengajuan !== 'pending') {
+            return back()->withErrors(['status_pengajuan' => 'Pengajuan ini sudah diputuskan.']);
+        }
+
+        $pengajuan->update([
+            'status_pengajuan' => $validated['status_pengajuan'],
+            'alasan_penolakan' => $validated['status_pengajuan'] === 'rejected' ? $validated['alasan_penolakan'] : null,
+        ]);
+
+        return redirect()->route('admin.verifikasi')->with('success', 'Keputusan verifikasi berhasil disimpan.');
+    }
+
     /**
      * Display a listing of the resource.
      */

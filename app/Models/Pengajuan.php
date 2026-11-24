@@ -22,6 +22,12 @@ class Pengajuan extends Model
     /** @use HasFactory<\Database\Factories\PengajuanFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'semester', 'status_pengajuan', 'judul_penelitian', 'jenis_pengajuan',
+        'id_mahasiswa', 'tahun_ajaran', 'usulan_dosen_pembimbing',
+        'alasan_penolakan', 'is_active',
+    ];
+
 
     public function detail_penilaian(): HasMany
     {

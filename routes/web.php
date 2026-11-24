@@ -42,6 +42,9 @@ Route::middleware('auth')->group(function (){
         ->name('admin.')
         ->group(function (){
             Route::get('/dashboard', [ProfileController::class, 'index'])->name('dashboard');
+            Route::get('/verifikasi', [PengajuanController::class, 'queue'])->name('verifikasi');
+            Route::get('/verifikasi/{pengajuan}', [PengajuanController::class, 'detail'])->name('verifikasi.detail');
+            Route::patch('/verifikasi/{pengajuan}', [PengajuanController::class, 'decide'])->name('verifikasi.decide');
 
             //Jadwal Routes
             Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal');

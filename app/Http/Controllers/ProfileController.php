@@ -8,9 +8,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Pengajuan;
+use App\Models\Jadwal;
 
 class ProfileController extends Controller
 {
+    public function index(): View
+    {
+        $counts = [
+            'pending' => Pengajuan::where('is_active', true)->where('status_pengajuan', 'pending')->count(),
+            'approved' => Pengajuan::where('is_active', true)->where('status_pengajuan', 'approved')
+                ->whereDoesntHave('jadwal')->whereDoesntHave('seminar_proposal')->whereDoesntHave('skripsi')->count(),
+            'today' => Jadwal::whereDate('tanggal_jadwal', now()->toDateString())->count()
+                + \App\Models\Seminar_Proposal::whereDate('tanggal_sidang', now()->toDateString())->count()
+                + \App\Models\Skripsi::whereDate('tanggal_sidang', now()->toDateString())->count(),
+        ];
+
+        return view('admin.dashboard', compact('counts'));
+    }
+
     /**
      * Display the user's profile form.
      */
