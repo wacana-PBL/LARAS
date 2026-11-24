@@ -21,7 +21,7 @@ class PengajuanPolicy
      */
     public function view(User $user, Pengajuan $pengajuan): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,6 +29,11 @@ class PengajuanPolicy
      */
     public function create(User $user): bool
     {
+        if($user->role === 'admin'){
+            return true;
+        }elseif($user->role === 'mahasiswa'){
+            return true;
+        }
         return false;
     }
 
@@ -37,6 +42,11 @@ class PengajuanPolicy
      */
     public function update(User $user, Pengajuan $pengajuan): bool
     {
+        if($user->role === 'admin'){
+            return true;
+        }elseif($user->role === 'mahasiswa'){
+            return true;
+        }
         return false;
     }
 
@@ -45,6 +55,9 @@ class PengajuanPolicy
      */
     public function delete(User $user, Pengajuan $pengajuan): bool
     {
+        if($user->role === 'admin'){
+            return true;
+        }
         return false;
     }
 

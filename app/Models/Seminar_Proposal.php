@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Seminar_Proposal extends Model
 {
-    /** @use HasFactory<\Database\Factories\SeminarProposalFactory> */
+    /** @use HasFactory<\Database\Factories\Seminar_ProposalFactory> */
     use HasFactory;
 
     public function pengajuan(): BelongsTo

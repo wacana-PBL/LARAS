@@ -18,8 +18,8 @@ return new class extends Migration
             $table->integer('semester');
             $table->enum('status_pengajuan', ['pending', 'approved', 'rejected'])->default('pending');
             $table->string('judul_penelitian');
-            $table->enum('jenis_pengajuan', ['baru', 'perpanjangan']);
-            $table->foreignId('id_mahasiswa')->constrained('mahasiswas')->cascadeOnDelete();
+            $table->enum('jenis_pengajuan', ['bimbingan', 'sidang skripsi', 'seminar proposal', 'preferensi']);
+            $table->foreignId('id_mahasiswa')->constrained('mahasiswas');
             $table->integer('tahun_ajaran');
             $table->string('usulan_dosen_pembimbing');
         });

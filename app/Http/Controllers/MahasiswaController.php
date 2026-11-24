@@ -39,6 +39,8 @@ class MahasiswaController extends Controller
                 'email' => $validated['email'],
                 'password' => Hash::make($validated['password']),
                 'role' => 'mahasiswa',
+                'nim' => $validated['nim'],
+                'program_studi' => $validated['program_studi']
             ]);
 
             Mahasiswa::create([
@@ -72,7 +74,7 @@ class MahasiswaController extends Controller
     public function update(UpdateMahasiswaRequest $request, Mahasiswa $mahasiswa)
     {
         $mahasiswa->update(['nama_mahasiswa' => $request->validated()['nama_mahasiswa']]);
-        
+
         return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa berhasil diperbarui.');
     }
 

@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['id_dosen', 'id_pengajuan', 'peran_dosen'])]
+#[Fillable(['id_dosen', 'id_pengajuan', 'role', 'status_plotting'])]
 class Plotting_Dosen_Pengajuan extends Model
 {
-    /** @use HasFactory<\Database\Factories\PlottingDosenPengajuanFactory> */
+    /** @use HasFactory<\Database\Factories\Plotting_Dosen_PengajuanFactory> */
     use HasFactory;
 
     public function dosen(): BelongsTo

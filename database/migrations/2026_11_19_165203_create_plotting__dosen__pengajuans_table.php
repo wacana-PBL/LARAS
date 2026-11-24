@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('plotting__dosen__pengajuans', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->enum('peran_dosen', ['pembimbing', 'penguji']);
+            $table->enum('role', ['pembimbing', 'penguji 1', 'penguji 2', 'penguji 3']);
+            $table->enum('status_plotting', ['pending', 'diterima', 'ditolak'])->default('pending');
             $table->foreignId('id_dosen')->constrained('dosens');
             $table->foreignId('id_pengajuan')->constrained('pengajuans')->cascadeOnDelete();
             $table->unique(['id_dosen', 'id_pengajuan', 'peran_dosen'], 'plotting_assignment_unique');

@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DeleteJadwalRequest;
 use App\Models\Jadwal;
-use App\Models\Pengajuan;
 use App\Models\Dosen;
 use App\Http\Requests\StoreJadwalRequest;
 use App\Http\Requests\UpdateJadwalRequest;
+use App\Http\Requests\ViewJadwalRequest;
+use App\Models\Mahasiswa;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class JadwalController extends Controller
 {
@@ -24,9 +28,7 @@ class JadwalController extends Controller
      */
     public function create()
     {
-        $pengajuans = Pengajuan::all();
-        $dosens = Dosen::all();
-        return view('jadwal.create', compact('pengajuans', 'dosens'));
+        return view('jadwal.create');
     }
 
     /**
@@ -34,27 +36,85 @@ class JadwalController extends Controller
      */
     public function store(StoreJadwalRequest $request)
     {
-        Jadwal::create($request->validated());
-        return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil ditambahkan.');
+        $validated = $request->validated();
+
+        $lokasiJadwalExists = Jadwal::where('tanggal_jadwal', $validated['tanggal_jadwal'])
+        ->where('lokasi_jadwal', $validated['lokasi_jadwal'])
+        ->whereHas('pengajuan', function($query){
+            $query->where('status_pengajuan', 'approved');
+        })
+        ->exists();
+
+        $jadwalExists = Jadwal::where('id_pengajuan', $validated['id_pengajuan'])
+        ->exists();
+        if($jadwalExists) {
+            return redirect()->back()->withErrors('409','Jadwal untuk pengajuan ini sudah ada.')->withInput();
+        }
+        elseif($lokasiJadwalExists){
+            return redirect()->back()->withErrors('422','Lokasi jadwal sudah digunakan pada tanggal yang sama.')->withInput();
+        }
+        elseif($validated['waktu_mulai'] >= $validated['waktu_selesai']){
+            return redirect()->back()->withErrors(['waktu_selesai' => 'Waktu selesai harus lebih besar dari waktu mulai.'])->withInput();
+        }elseif($validated['tanggal_jadwal'] < now()->toDateString()){
+            return redirect()->back()->withErrors(['tanggal_jadwal' => 'Tanggal jadwal tidak boleh kurang dari tanggal sekarang.'])->withInput();
+        }
+        Jadwal::create($validated);
+
+        $route = match (Auth::user()->role) {
+            'admin'     => 'admin.dashboard',
+            'mahasiswa' => 'mahasiswa.dashboard',
+            default     => 'login',
+};
+
+        return redirect()->route($route)->with('success', 'Jadwal berhasil ditambahkan.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Jadwal $jadwal)
+    public function show(User $user,string $tanggal)
     {
-        $jadwal->load(['pengajuan', 'dosen']);
-        return view ('jadwal.show', compact('jadwal'));
+        [$year, $month] = explode('-', $tanggal);
+        if($user->role === 'admin'){
+        $jadwals = Jadwal::with(['pengajuan', 'dosen'])
+        ->whereYear('tanggal_jadwal', $year)
+        ->whereMonth('tanggal_jadwal', $month)
+        ->orderBy('tanggal_jadwal', 'asc')
+        ->get();
+        }elseif($user->role === 'dosen'){
+            $dosen = Dosen::where('id_pengguna', $user->id)->first();
+            $jadwals = Jadwal::with(['pengajuan', 'dosen'])
+            ->where('id_dosen', $dosen->id)
+            ->whereYear('tanggal_jadwal', $year)
+            ->whereMonth('tanggal_jadwal', $month)
+            ->orderBy('tanggal_jadwal', 'asc')
+            ->get();
+        }elseif($user->role === 'mahasiswa'){
+            $mahasiswa = Mahasiswa::where('id_pengguna', $user->id)->first();
+            $jadwals = Jadwal::with(['pengajuan', 'mahasiswa'])
+            ->whereHas('pengajuan', function ($query) use ($mahasiswa) {
+                $query->where('id_mahasiswa', $mahasiswa?->id);
+            })
+            ->whereYear('tanggal_jadwal', $year)
+            ->whereMonth('tanggal_jadwal', $month)
+            ->orderBy('tanggal_jadwal', 'asc')
+            ->get();
+
+        }
+
+
+
+    return view('admin.jadwal', compact($jadwals));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Jadwal $jadwal)
+    public function edit(ViewJadwalRequest $request, Jadwal $jadwal)
     {
-        $pengajuans = Pengajuan::all();
-        $dosens = Dosen::all();
-        return view('jadwal.edit', compact('jadwal', 'pengajuans', 'dosens'));
+        $request->validated();
+        $jadwal = Jadwal::with('pengajuan')->findOrFail($jadwal->id);
+        return view('jadwal.edit', compact('jadwal'));
     }
 
     /**
@@ -62,16 +122,20 @@ class JadwalController extends Controller
      */
     public function update(UpdateJadwalRequest $request, Jadwal $jadwal)
     {
-        $jadwal->update($request->validated());
+        $validated = $request->validated();
+        $jadwal->update($validated);
         return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil diperbarui.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Jadwal $jadwal)
+    public function destroy(DeleteJadwalRequest $request, Jadwal $jadwal)
     {
+        $request->validated();
         $jadwal->delete();
+        $jadwal->pengajuan?->delete();
+
         return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil dihapus.');
     }
 }
