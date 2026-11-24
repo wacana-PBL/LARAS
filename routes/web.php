@@ -5,6 +5,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::middleware('auth')->group(function (){
 
     Route::middleware('Role:mahasiswa')
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function (){
             Route::get('/edit/dosen/{id}', [DosenController::class, 'edit'])->name('edit.dosen');
             Route::put('/update/dosen/{id}', [DosenController::class, 'update'])->name('update.dosen');
             Route::delete('/delete/dosen/{id}', [DosenController::class, 'destroy'])->name('delete.dosen');
+            
 
             //Mahasiswa Routes
             Route::post('/store/mahasiswa',[MahasiswaController::class,'store'])->name('store.mahasiswa');
@@ -53,6 +55,7 @@ Route::prefix('dosen')->name('dosen.')->group(function () {
     Route::get('/pengajuan', fn() => view('dosen.pengajuan'))->name('pengajuan');
     Route::get('/jadwal', fn() => view('dosen.jadwal'))->name('jadwal');
     Route::get('/profil', fn() => view('dosen.profil'))->name('profil');
+    Route::get('/pantauan-mahasiswa', fn() => view('dosen.pantauan-mahasiswa'))->name('pantauan-mahasiswa');
 });
 
-//require __DIR__.'/auth.php';
+require __DIR__.'/auth.php';
