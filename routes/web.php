@@ -55,6 +55,7 @@ Route::prefix('dosen')->name('dosen.')->group(function () {
     Route::get('/pengajuan', fn() => view('dosen.pengajuan'))->name('pengajuan');
     Route::get('/jadwal', fn() => view('dosen.jadwal'))->name('jadwal');
     Route::get('/profil', fn() => view('dosen.profil'))->name('profil');
+    Route::get('/detail-penilaian', fn() => view('dosen.detail-penilaian'))->name('detail-penilaian');
     Route::get('/pantauan-mahasiswa', fn() => view('dosen.pantauan-mahasiswa'))->name('pantauan-mahasiswa');
 });
 
