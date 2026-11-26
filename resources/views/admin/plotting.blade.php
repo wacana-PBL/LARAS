@@ -4,13 +4,6 @@
 
 @section('content')
     @php
-        $dosen = [
-            ['name' => 'Mera Kartika Delimayanti, S.Si., M.T., Ph.D.', 'nidn' => '0015087301', 'role' => 'Pembimbing', 'status' => ['label' => 'Tersimpan', 'tone' => 'saved']],
-            ['name' => 'Dr. Anita Hidayati, S.Kom., M.Kom.', 'nidn' => '0023107602', 'role' => 'Penguji', 'status' => ['label' => 'Tersimpan', 'tone' => 'saved']],
-            ['name' => 'Dr. Hata Maulana, S.Si., M.T.', 'nidn' => '0012077803', 'role' => 'Penguji', 'status' => ['label' => 'Belum disimpan', 'tone' => 'dirty'], 'edited' => true],
-            ['name' => 'Bambang Warsuta, S.Kom., M.T.I.', 'nidn' => '0019057504', 'role' => 'Pembimbing', 'status' => ['label' => 'Tersimpan', 'tone' => 'saved']],
-            ['name' => 'Dewi Anggraini, S.Kom., M.Kom.', 'nidn' => '0021088205', 'role' => 'Belum ditetapkan', 'status' => ['label' => 'Perlu ditetapkan', 'tone' => 'empty']],
-        ];
         $rubrik = [
             ['name' => 'Kualitas Konsep & Metodologi', 'text' => 'Kekuatan ide, relevansi teori, dan konsistensi metodologi penelitian.', 'desc' => 'Dinilai dari kejelasan tujuan, keterkaitan teori, dan konsistensi metode.', 'weight' => '30%'],
             ['name' => 'Kemampuan Analisis & Interpretasi', 'text' => 'Kemampuan menganalisis data, menarik kesimpulan, dan menghubungkan hasil dengan tujuan penelitian.', 'desc' => 'Dinilai dari kedalaman analisis, ketepatan interpretasi, dan konsistensi kesimpulan.', 'weight' => '25%'],
@@ -20,110 +13,98 @@
     @endphp
 
     <x-admin-shell active="Manajemen Data" padding-bottom="pb-[73px]">
-        <section class="mt-6 flex h-[117px] flex-nowrap items-center gap-x-6 gap-y-4 rounded-[15px] bg-line px-[29px] max-[1101px]:mt-[26px] max-[1101px]:h-auto max-[1101px]:flex-wrap max-[1101px]:p-[18px_22px] max-[761px]:p-[16px_18px] max-[421px]:p-[14px_16px]"
+        <section class="mt-6 flex min-h-[117px] flex-nowrap items-center gap-x-6 gap-y-4 rounded-[15px] bg-line px-[29px] max-[1101px]:mt-[26px] max-[1101px]:h-auto max-[1101px]:flex-wrap max-[1101px]:p-[18px_22px] max-[761px]:p-[16px_18px] max-[421px]:p-[14px_16px]"
                  aria-label="Manajemen peran dosen">
             <div class="min-w-0">
                 <h1 class="m-0 text-[24px] font-medium leading-[1.5] text-ink max-[1101px]:text-[21px] max-[761px]:text-[19px] max-[421px]:text-[17px]">Plotting Peran Dosen &amp; Rubrik Penilaian</h1>
-                <p class="mt-2.5 text-[20px] font-normal leading-[1.5] text-ink max-[1101px]:text-[15px] max-[761px]:text-[14px] max-[421px]:text-[13px]">Tetapkan dosen sebagai Pembimbing atau Penguji untuk seminar dan skripsi.</p>
+                <p class="mt-2.5 text-[20px] font-normal leading-[1.5] text-ink max-[1101px]:text-[15px] max-[761px]:text-[14px] max-[421px]:text-[13px]">Pilih dosen pembimbing dan penguji untuk setiap pengajuan mahasiswa.</p>
             </div>
 
-            <span class="inline-flex h-11 w-[217px] shrink-0 items-center justify-center rounded-lg bg-sand px-3 text-[20px] font-medium leading-[1.5] whitespace-nowrap text-ink max-[1101px]:h-[38px] max-[1101px]:w-auto max-[1101px]:px-3.5 max-[1101px]:text-[15px] max-[761px]:h-[34px] max-[761px]:text-[13px] max-[421px]:h-8 max-[421px]:text-[12px]">1 Belum ditetapkan</span>
+            <span class="inline-flex h-11 w-auto shrink-0 items-center justify-center rounded-lg bg-sand px-3 text-[16px] font-medium leading-[1.5] whitespace-nowrap text-ink max-[1101px]:h-[38px] max-[1101px]:px-3.5 max-[1101px]:text-[14px]">{{ $pengajuans->total() }} Pengajuan</span>
+        </section>
+
+        <section class="mt-8" aria-labelledby="dosen-list-title">
+            <div class="mb-4">
+                <h2 id="dosen-list-title" class="text-xl font-medium text-ink">Daftar Dosen ({{ $dosens->count() }})</h2>
+                <p class="mt-1 text-sm text-muted">Informasi dosen, peran saat ini, dan penggunaan kuota bimbingan.</p>
+            </div>
+            <div class="overflow-x-auto rounded-lg shadow-[inset_0_0_0_1px_#b8b8b8]">
+                <table class="w-full min-w-[760px] border-collapse bg-white text-left">
+                    <thead class="bg-line text-sm font-semibold text-muted"><tr><th class="p-4">NAMA DOSEN / NIDN</th><th class="p-4">PERAN SAAT INI</th><th class="p-4">PENGAJUAN</th><th class="p-4">KUOTA PEMBIMBING</th><th class="p-4">STATUS</th></tr></thead>
+                    <tbody>
+                        @foreach ($dosens as $dosen)
+                            @php $assignments = $dosen->plotting_dosen_pengajuan->where('status_plotting', '!=', 'ditolak'); @endphp
+                            <tr class="border-t border-line">
+                                <td class="p-4"><p class="font-medium text-ink">{{ $dosen->nama_dosen }}</p><p class="mt-1 text-xs text-muted">NIDN: {{ $dosen->nidn ?? '—' }}</p></td>
+                                <td class="p-4">{{ $assignments->pluck('role')->map(fn ($role) => $roles[$role] ?? ucfirst($role))->unique()->join(', ') ?: 'Belum ditetapkan' }}</td>
+                                <td class="p-4 text-sm">{{ $assignments->map(fn ($assignment) => $assignment->pengajuan?->mahasiswa?->nama_mahasiswa)->filter()->unique()->join(', ') ?: '—' }}</td>
+                                <td class="p-4">{{ $dosen->plotting_pembimbing_aktif_count }} / {{ $dosen->kuota_bimbingan }}</td>
+                                <td class="p-4">{{ $dosen->plotting_pembimbing_aktif_count >= $dosen->kuota_bimbingan ? 'Kuota penuh' : 'Tersedia' }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </section>
 
         <section class="mt-8 max-[1101px]:mt-6" aria-labelledby="admp-list-title">
             <div class="flex h-[55px] items-start justify-between gap-6 max-[1101px]:h-auto max-[1101px]:flex-col max-[1101px]:gap-4">
                 <div class="min-w-0">
-                    <h2 class="m-0 text-[20px] font-medium leading-[1.5] text-ink max-[421px]:text-[17px]" id="admp-list-title">Daftar Dosen (5)</h2>
-                    <p class="mt-1 text-[14px] font-normal leading-[1.5] text-muted max-[421px]:text-[13px]">2 Pembimbing &bull; 2 Penguji &bull; 1 Belum ditetapkan</p>
+                    <h2 class="m-0 text-[20px] font-medium leading-[1.5] text-ink max-[421px]:text-[17px]" id="admp-list-title">Daftar Pengajuan ({{ $pengajuans->total() }})</h2>
+                    <p class="mt-1 text-[14px] font-normal leading-[1.5] text-muted max-[421px]:text-[13px]">Penugasan disimpan berdasarkan peran dosen.</p>
                 </div>
 
                 <div class="flex shrink-0 gap-4 max-[1101px]:w-full max-[1101px]:gap-3 max-[761px]:flex-wrap">
-                    <label class="flex h-11 w-[320px] items-center gap-2.5 rounded-lg border border-[#b8b8b8] px-3.5 max-[1101px]:w-auto max-[1101px]:flex-1">
+                    <form id="plotting-search" method="GET" action="{{ route('admin.plotting') }}" class="flex h-11 w-[320px] items-center gap-2.5 rounded-lg border border-[#b8b8b8] px-3.5 max-[1101px]:w-auto max-[1101px]:flex-1">
                         <svg class="size-[18px] shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <circle cx="11" cy="11" r="6.4" stroke="#747373" stroke-width="2" />
                             <path d="m16 16 4 4" stroke="#747373" stroke-width="2" stroke-linecap="round" />
                         </svg>
                         <input class="w-full border-none bg-transparent p-0 text-[14px] text-ink outline-none placeholder:text-muted max-[421px]:text-[13px]"
-                               type="search" placeholder="Cari nama atau NIDN dosen" aria-label="Cari nama atau NIDN dosen">
-                    </label>
-
-                    <div class="flex h-11 w-[190px] cursor-pointer items-center justify-between gap-2.5 rounded-lg border border-[#b8b8b8] px-3.5 text-[14px] font-normal text-ink max-[761px]:w-full max-[421px]:text-[13px]">
-                        <span>Semua peran</span>
-                        <svg class="size-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path d="M6 9.5 12 15.5l6-6" stroke="#020100" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
+                               type="search" name="q" value="{{ request('q') }}" placeholder="Cari mahasiswa atau judul" aria-label="Cari mahasiswa atau judul">
+                        <button class="shrink-0 text-sm font-medium" type="submit">Cari</button>
+                    </form>
                 </div>
             </div>
 
             <div class="mt-5 overflow-hidden rounded-lg shadow-[inset_0_0_0_1px_#b8b8b8] max-[1339px]:overflow-x-auto max-[761px]:overflow-visible max-[761px]:shadow-none">
-                <div class="grid h-[46px] grid-cols-[515px_184px_300px_1fr] items-center gap-6 bg-line px-6 max-[1101px]:w-max max-[1101px]:min-w-full max-[1101px]:grid-cols-[260px_120px_200px_150px] max-[1101px]:gap-4 max-[1101px]:px-4 max-[761px]:hidden">
-                    <span class="text-[14px] font-semibold leading-[1.5] text-muted">NAMA DOSEN / NIDN</span>
-                    <span class="text-[14px] font-semibold leading-[1.5] text-muted">PERAN SAAT INI</span>
-                    <span class="text-[14px] font-semibold leading-[1.5] text-muted">PENETAPAN PERAN</span>
-                    <span class="text-[14px] font-semibold leading-[1.5] text-muted">STATUS</span>
+                @if (session('success')) <p class="m-4 rounded bg-green-50 p-3 text-green-800" role="status">{{ session('success') }}</p> @endif
+                @if ($errors->any()) <div class="m-4 rounded bg-red-50 p-3 text-red-800" role="alert"><p class="font-semibold">Penugasan belum disimpan.</p><ul class="list-disc pl-5">@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div> @endif
+                <div class="grid h-[46px] grid-cols-[minmax(220px,1.1fr)_minmax(240px,1fr)_minmax(240px,1fr)_minmax(240px,1fr)_minmax(240px,1fr)] items-center gap-4 bg-line px-6 max-[1101px]:hidden">
+                    <span class="text-sm font-semibold text-muted">MAHASISWA / PENGAJUAN</span>
+                    @foreach ($roles as $label)<span class="text-sm font-semibold text-muted">{{ strtoupper($label) }}</span>@endforeach
                 </div>
 
-                @foreach ($dosen as $index => $item)
-                    <div @class([
-                        'grid h-[88px] grid-cols-[515px_184px_300px_1fr] items-center gap-6 border-b border-line px-6',
-                        'max-[1101px]:h-24 max-[1101px]:w-max max-[1101px]:min-w-full max-[1101px]:grid-cols-[260px_120px_200px_150px] max-[1101px]:gap-4 max-[1101px]:px-4',
-                        'max-[761px]:mt-3 max-[761px]:h-auto max-[761px]:w-full max-[761px]:grid-cols-1 max-[761px]:gap-y-2.5 max-[761px]:rounded-lg max-[761px]:border max-[761px]:border-line max-[761px]:p-4',
-                        'bg-white' => empty($item['edited']),
-                        'bg-brand-soft' => ! empty($item['edited']),
-                    ])>
+                @forelse ($pengajuans as $pengajuan)
+                    @php $assigned = $pengajuan->plotting_dosen_pengajuan->keyBy('role'); @endphp
+                    <form method="POST" action="{{ route('admin.plotting.update', $pengajuan) }}" class="grid grid-cols-[minmax(220px,1.1fr)_repeat(4,minmax(240px,1fr))] items-center gap-4 border-b border-line bg-white px-6 py-5 max-[1101px]:grid-cols-1 max-[1101px]:gap-3 max-[1101px]:px-4">
+                        @csrf @method('PUT')
                         <div class="min-w-0">
-                            <p class="m-0 text-base font-medium leading-[1.5] text-ink max-[1101px]:text-[14px]">{{ $item['name'] }}</p>
-                            <p class="mt-1 text-[13px] font-normal leading-[1.5] text-muted">NIDN: {{ $item['nidn'] }}</p>
+                            <p class="font-medium text-ink">{{ $pengajuan->mahasiswa?->nama_mahasiswa ?? 'Mahasiswa' }}</p>
+                            <p class="text-xs text-muted">NIM: {{ $pengajuan->mahasiswa?->nim ?? '—' }}</p>
+                            <p class="mt-2 text-sm text-ink">{{ $pengajuan->judul_penelitian }}</p>
+                            <p class="mt-1 text-xs text-muted">{{ ucfirst($pengajuan->jenis_pengajuan) }} · {{ $pengajuan->status_pengajuan }}</p>
                         </div>
-
-                        <p @class([
-                            'm-0 min-w-0 text-base font-normal leading-[1.5]',
-                            'text-ink' => $item['role'] !== 'Belum ditetapkan',
-                            'text-muted' => $item['role'] === 'Belum ditetapkan',
-                        ])>{{ $item['role'] }}</p>
-
-                        <div class="min-w-0">
-                            <fieldset class="relative m-0 flex h-[68px] w-full flex-col gap-1 rounded-lg border border-[#b8b8b8] p-[8px_12px]">
-                                <legend class="sr-only">Peran {{ $item['name'] }}</legend>
-                                @foreach (['Pembimbing', 'Penguji'] as $role)
-                                    <label class="relative flex cursor-pointer items-center gap-2 text-[13px] font-normal leading-6 text-ink">
-                                        <input class="peer absolute size-px opacity-0" type="radio" name="peran-{{ $index }}" value="{{ $role }}"
-                                            @checked($item['role'] === $role)>
-                                        <span class="block size-4 shrink-0 rounded-full border border-muted peer-checked:border-brand peer-checked:bg-brand peer-checked:shadow-[inset_0_0_0_3px_#ffffff] peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-brand" aria-hidden="true"></span>
-                                        {{ $role }}
-                                    </label>
-                                @endforeach
-                            </fieldset>
-                        </div>
-
-                        <div class="flex items-center gap-2">
-                            <span class="flex size-[18px] shrink-0 items-center justify-center" aria-hidden="true">
-                                @if ($item['status']['tone'] === 'saved')
-                                    <svg class="size-[18px]" viewBox="0 0 24 24" fill="none">
-                                        <path d="M5 12.8 9.6 17.4 19 7.4" stroke="#747373" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                @else
-                                    <span @class([
-                                        'size-2 rounded-full',
-                                        'bg-brand' => $item['status']['tone'] === 'dirty',
-                                        'bg-muted' => $item['status']['tone'] !== 'dirty',
-                                    ])></span>
-                                @endif
-                            </span>
-                            <span @class([
-                                'text-[13px] leading-[1.5]',
-                                'font-medium text-brand' => $item['status']['tone'] === 'dirty',
-                                'font-normal text-muted' => $item['status']['tone'] !== 'dirty',
-                            ])>{{ $item['status']['label'] }}</span>
-                        </div>
-                    </div>
+                        @foreach ($roles as $role => $label)
+                            @php $existing = $assigned->get($role); @endphp
+                            <label class="block text-sm font-medium text-ink">{{ $label }}
+                                <select name="assignments[{{ $role }}]" class="mt-1 w-full rounded-lg border border-[#b8b8b8] bg-white p-2.5 text-sm" aria-label="{{ $label }} untuk {{ $pengajuan->mahasiswa?->nama_mahasiswa }}">
+                                    <option value="">Belum ditetapkan</option>
+                                    @foreach ($dosens as $dosen)
+                                        <option value="{{ $dosen->id }}" @selected((string) old("assignments.$role", $existing?->id_dosen) === (string) $dosen->id)>{{ $dosen->nama_dosen }} · Kuota {{ $dosen->plotting_pembimbing_aktif_count }}/{{ $dosen->kuota_bimbingan }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($existing)<span class="mt-1 block text-xs text-muted">Status: {{ $existing->status_plotting }}</span>@endif
+                                @error("assignments.$role")<span class="mt-1 block text-xs text-red-700">{{ $message }}</span>@enderror
+                            </label>
+                        @endforeach
+                        <div class="col-span-full flex justify-end"><button class="rounded-lg bg-brand px-5 py-2.5 font-semibold text-ink" type="submit">Simpan Penugasan</button></div>
+                    </form>
+                @empty
+                    <p class="p-8 text-center text-muted">Belum ada pengajuan aktif untuk ditugaskan.</p>
                 @endforeach
 
-                <div class="flex h-11 items-center justify-between gap-6 px-6 text-[13px] font-normal leading-[1.5] text-muted max-[1101px]:h-auto max-[1101px]:flex-wrap max-[1101px]:gap-4 max-[1101px]:px-4 max-[1101px]:py-3 max-[761px]:px-1">
-                    <span>Menampilkan 5 dari 5 dosen</span>
-                    <span>Pilih satu peran untuk setiap dosen: Pembimbing atau Penguji.</span>
-                </div>
+                <div class="p-4">{{ $pengajuans->links() }}</div>
             </div>
 
             <div class="mt-5 flex h-[72px] items-center justify-between gap-6 rounded-lg bg-line px-6 max-[1101px]:h-auto max-[1101px]:flex-col max-[1101px]:items-start max-[1101px]:gap-3.5 max-[1101px]:p-[18px_20px]">

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('nilai_skor');
-            $table->foreignId('id_pengajuan')->constrained('pengajuans');
+            $table->foreignId('id_pengajuan')->constrained('pengajuans')->cascadeOnDelete();
             $table->enum('status_kelulusan', ['lulus', 'lulus bersyarat', 'tidak lulus']);
             $table->enum('jenis_penilaian', ['a', 'b', 'c']);
             $table->string('catatan_revisi');

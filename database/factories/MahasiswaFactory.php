@@ -21,6 +21,8 @@ class MahasiswaFactory extends Factory
         return [
             'nama_mahasiswa' => fake()->name(),
             'id_pengguna' => User::factory(['role' => 'mahasiswa']),
+            'nim'=> fake()->unique()->numerify('#####'),
+            'program_studi' => fake()->word(),
         ];
     }
 }

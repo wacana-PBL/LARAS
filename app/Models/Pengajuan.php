@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 #[Fillable([
     'semester',
@@ -20,37 +22,43 @@ class Pengajuan extends Model
     /** @use HasFactory<\Database\Factories\PengajuanFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'semester', 'status_pengajuan', 'judul_penelitian', 'jenis_pengajuan',
+        'id_mahasiswa', 'tahun_ajaran', 'usulan_dosen_pembimbing',
+        'alasan_penolakan', 'is_active',
+    ];
 
-        public function Detail_penilaian()
+
+    public function detail_penilaian(): HasMany
     {
-        return $this->hasOne(Detail_Penilaian::class, 'id_pengajuan', 'id');
+        return $this->hasMany(Detail_Penilaian::class, 'id_pengajuan', 'id');
     }
-    public function Plotting_Dosen_Pengajuan()
+    public function plotting_dosen_pengajuan(): HasMany
     {
-        return $this->hasOne(Plotting_Dosen_Pengajuan::class, 'id_pengajuan', 'id');
+        return $this->hasMany(Plotting_Dosen_Pengajuan::class, 'id_pengajuan', 'id');
     }
-    public function Konsultasi()
+    public function konsultasi(): HasMany
     {
-        return $this->hasOne(Konsultasi::class, 'id_pengajuan', 'id');
+        return $this->hasMany(Konsultasi::class, 'id_pengajuan', 'id');
     }
-    public function Jadwal()
+    public function jadwal(): HasOne
     {
         return $this->hasOne(Jadwal::class, 'id_pengajuan', 'id');
     }
-    public function mahasiswa()
+    public function mahasiswa(): BelongsTo
     {
-        return $this->belongsTo(Mahasiswa::class, 'id', 'id_mahasiswa');
+        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id');
     }
 
-    public function Seminar_Propopsal()
+    public function seminar_proposal(): HasOne
     {
         return $this->hasOne(Seminar_Proposal::class, 'id_pengajuan', 'id');
     }
-    public function Skripsi()
+    public function skripsi(): HasOne
     {
         return $this->hasOne(Skripsi::class, 'id_pengajuan', 'id');
     }
-    public function Dokumen()
+    public function dokumen(): HasMany
     {
         return $this->hasMany(Dokumen::class, 'id_pengajuan', 'id');
     }

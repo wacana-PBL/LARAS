@@ -139,7 +139,6 @@ Item logbook: `id, sesi_ke, tanggal, dosen{nidn,nama}, topik, catatan, file{url,
 | GET | `/mahasiswa/pengajuan` | – (list + status aktif) |
 | POST | `/mahasiswa/pengajuan` | `jenis` (`pembimbing`), `judul`, `abstrak`, `referensi`, `usulan_dosen_ids[]` |
 | PUT | `/mahasiswa/pengajuan/{id}` | field sama (draft) |
-| POST | `/mahasiswa/pengajuan/{id}/submit` | – |
 
 ### 3.5 Pendaftaran sempro / skripsi
 
@@ -240,7 +239,7 @@ Detail item: `id, mahasiswa{nama,nim,prodi}, jenis, judul, pembimbing[], dokumen
 | Method | Endpoint | Body / Query |
 |---|---|---|
 | GET | `/admin/jadwal?bulan=2026-10` | papan jadwal per hari |
-| GET | `/admin/jadwal/antrean` | pendaftaran `diverifikasi` yang siap dijadwalkan |
+| GET | `/admin/pengajuan/antrean` | pendaftaran `diverifikasi` yang siap dijadwalkan |
 | POST | `/admin/jadwal` | `pendaftaran_id`, `tanggal`, `mulai`, `selesai`, `ruangan_id`, `penguji_ids[]` |
 | PUT | `/admin/jadwal/{id}` | field sama |
 | DELETE | `/admin/jadwal/{id}` | – |

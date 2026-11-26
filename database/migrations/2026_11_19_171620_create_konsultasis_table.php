@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('tanggal_konsultasi');
             $table->enum('metode_konsultasi', ['online', 'offline']);
             $table->text('catatan_progress');
-            $table->foreignId('id_pengajuan')->constrained('pengajuans');
+            $table->foreignId('id_pengajuan')->constrained('pengajuans')->cascadeOnDelete();
             $table->foreignId('id_dosen')->constrained('dosens');
         });
     }

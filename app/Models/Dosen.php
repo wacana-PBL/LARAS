@@ -5,30 +5,39 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['kuota_bimbingan', 'nama_dosen', 'id_pengguna'])]
+#[Fillable(['kuota_bimbingan', 'nama_dosen', 'nidn', 'id_pengguna'])]
 class Dosen extends Model
 {
     /** @use HasFactory<\Database\Factories\DosenFactory> */
     use HasFactory;
 
-    public function User()
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'id', 'id_pengguna');
+        return $this->belongsTo(User::class, 'id_pengguna', 'id');
     }
 
-    public function plotting_dosen_pengajuan()
+    public function plotting_dosen_pengajuan(): HasMany
     {
-        return $this->hasOne(Plotting_Dosen_Pengajuan::class, 'id_dosen', 'id');
+        return $this->hasMany(Plotting_Dosen_Pengajuan::class, 'id_dosen', 'id');
     }
 
-    public function Jadwal()
+    public function plottingPembimbingAktif(): HasMany
     {
-        return $this->belongsTo(Jadwal::class, 'id_dosen', 'id');
+        return $this->hasMany(Plotting_Dosen_Pengajuan::class, 'id_dosen', 'id')
+            ->where('role', 'pembimbing')
+            ->where('status_plotting', '!=', 'ditolak');
     }
 
-    public function Konsultasi()
+    public function jadwal(): HasMany
     {
-        return $this->belongsTo(Konsultasi::class, 'id_dosen', 'id');
+        return $this->hasMany(Jadwal::class, 'id_dosen', 'id');
+    }
+
+    public function konsultasi(): HasMany
+    {
+        return $this->hasMany(Konsultasi::class, 'id_dosen', 'id');
     }
 }

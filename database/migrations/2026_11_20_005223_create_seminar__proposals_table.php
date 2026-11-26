@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('seminar__proposals', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('id_pengajuan')->constrained('pengajuans');
+            $table->foreignId('id_pengajuan')->unique()->constrained('pengajuans')->cascadeOnDelete();
             $table->dateTime('waktu_mulai');
             $table->string('lokasi_ruangan');
             $table->date('tanggal_sidang');

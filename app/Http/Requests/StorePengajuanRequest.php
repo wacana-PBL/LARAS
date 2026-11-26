@@ -12,7 +12,7 @@ class StorePengajuanRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return $this->user()->can('create', $this->route('Pengajuan'));
     }
 
     /**
@@ -23,7 +23,13 @@ class StorePengajuanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'semester' => 'required|string|max:255',
+            'tahun_ajaran' => 'required|string|max:255',
+            'status_pengajuan' => 'required|in:pending, approved, rejected',
+            'judul_penelitian' => 'required|string|max:255',
+            'jenis_pengajuan' => 'required|in:bimbingan, sidang skripsi, seminar proposal, preferensi, skripsi, dokumen',
+            'id_mahasiswa' =>'required|exists:mahasiswa, id',
+            'usulan_dosen_pembimbing' => 'string|max:255',
         ];
     }
 }

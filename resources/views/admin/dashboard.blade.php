@@ -5,9 +5,9 @@
 @section('content')
     @php
         $stats = [
-            ['title' => 'Menunggu Verifikasi', 'value' => '12', 'link' => 'Perlu tindakan admin →', 'href' => route('admin.verifikasi'), 'icon' => 'inbox'],
-            ['title' => 'Siap Dijadwalkan', 'value' => '12', 'link' => 'Data Sudah Diapprove →', 'href' => route('admin.jadwal'), 'icon' => 'schedule'],
-            ['title' => 'Sidang Hari Ini', 'value' => '12', 'link' => 'Lihat detail jadwal →', 'href' => route('admin.jadwal'), 'icon' => 'today'],
+            ['title' => 'Menunggu Verifikasi', 'value' => $counts['pending'], 'link' => 'Perlu tindakan admin →', 'href' => route('admin.verifikasi'), 'icon' => 'inbox'],
+            ['title' => 'Siap Dijadwalkan', 'value' => $counts['approved'], 'link' => 'Data Sudah Diapprove →', 'href' => route('admin.jadwal'), 'icon' => 'schedule'],
+            ['title' => 'Sidang Hari Ini', 'value' => $counts['today'], 'link' => 'Lihat detail jadwal →', 'href' => route('admin.jadwal'), 'icon' => 'today'],
         ];
         $activities = [
             ['name' => 'Nadra Zaki Saputra', 'text' => 'Nadra Zaki Saputra mengirim pengajuan Sempro.', 'time' => '10 menit yang lalu'],

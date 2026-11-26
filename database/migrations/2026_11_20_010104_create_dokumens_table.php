@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('dokumens', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('id_pengajuan')->constrained('pengajuans');
+            $table->foreignId('id_pengajuan')->constrained('pengajuans')->cascadeOnDelete();
             $table->string('pengunggah');
             $table->enum('kategori_dokumen', ['proposal', 'seminar_proposal', 'skripsi']);
             $table->enum('status_verifikasi', ['belum diverifikasi', 'diterima', 'ditolak'])->default('belum diverifikasi');

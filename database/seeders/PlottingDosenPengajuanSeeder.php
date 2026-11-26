@@ -12,6 +12,17 @@ class PlottingDosenPengajuanSeeder extends Seeder
      */
     public function run(): void
     {
-        Plotting_Dosen_Pengajuan::factory()->count(10)->create();
+        $roles = ['pembimbing', 'penguji 1', 'penguji 2', 'penguji 3'];
+        $pengajuans = \App\Models\Pengajuan::all();
+        $dosens = \App\Models\Dosen::all();
+
+        foreach ($pengajuans as $pengajuan) {
+            foreach (array_slice($roles, 0, min(count($roles), $dosens->count())) as $index => $role) {
+                Plotting_Dosen_Pengajuan::firstOrCreate(
+                    ['id_pengajuan' => $pengajuan->id, 'role' => $role],
+                    ['id_dosen' => $dosens->get(($pengajuan->id + $index) % $dosens->count())->id, 'status_plotting' => 'pending'],
+                );
+            }
+        }
     }
 }
