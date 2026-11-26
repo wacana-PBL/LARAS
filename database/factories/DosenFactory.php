@@ -20,6 +20,7 @@ class DosenFactory extends Factory
     {
         return [
             'nama_dosen' => fake()->name(),
+            'nidn' => fake()->unique()->numerify('##########'),
             'kuota_bimbingan' => fake()->numberBetween(1, 10),
             'id_pengguna' => User::factory(['role' => 'dosen']),
         ];

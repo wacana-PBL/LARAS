@@ -20,7 +20,7 @@ class Plotting_Dosen_PengajuanFactory extends Factory
     public function definition(): array
     {
         return [
-            'peran_dosen' => fake()->randomElement(['pembimbing', 'penguji']),
+            'role' => fake()->randomElement(['pembimbing', 'penguji 1', 'penguji 2', 'penguji 3']),
             'id_dosen' => Dosen::factory(),
             'id_pengajuan' => Pengajuan::factory(),
         ];

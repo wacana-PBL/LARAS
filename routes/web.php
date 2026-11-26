@@ -5,6 +5,7 @@ use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PlottingDosenPengajuanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 Route::redirect('/', 'login');
@@ -42,6 +43,8 @@ Route::middleware('auth')->group(function (){
         ->name('admin.')
         ->group(function (){
             Route::get('/dashboard', [ProfileController::class, 'index'])->name('dashboard');
+            Route::get('/plotting', [PlottingDosenPengajuanController::class, 'index'])->name('plotting');
+            Route::put('/plotting/{pengajuan}', [PlottingDosenPengajuanController::class, 'update'])->name('plotting.update');
             Route::get('/verifikasi', [PengajuanController::class, 'queue'])->name('verifikasi');
             Route::get('/verifikasi/{pengajuan}', [PengajuanController::class, 'detail'])->name('verifikasi.detail');
             Route::patch('/verifikasi/{pengajuan}', [PengajuanController::class, 'decide'])->name('verifikasi.decide');

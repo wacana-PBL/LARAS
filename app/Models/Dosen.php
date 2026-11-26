@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['kuota_bimbingan', 'nama_dosen', 'id_pengguna'])]
+#[Fillable(['kuota_bimbingan', 'nama_dosen', 'nidn', 'id_pengguna'])]
 class Dosen extends Model
 {
     /** @use HasFactory<\Database\Factories\DosenFactory> */
@@ -22,6 +22,13 @@ class Dosen extends Model
     public function plotting_dosen_pengajuan(): HasMany
     {
         return $this->hasMany(Plotting_Dosen_Pengajuan::class, 'id_dosen', 'id');
+    }
+
+    public function plottingPembimbingAktif(): HasMany
+    {
+        return $this->hasMany(Plotting_Dosen_Pengajuan::class, 'id_dosen', 'id')
+            ->where('role', 'pembimbing')
+            ->where('status_plotting', '!=', 'ditolak');
     }
 
     public function jadwal(): HasMany

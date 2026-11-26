@@ -18,7 +18,8 @@ return new class extends Migration
             $table->enum('status_plotting', ['pending', 'diterima', 'ditolak'])->default('pending');
             $table->foreignId('id_dosen')->constrained('dosens');
             $table->foreignId('id_pengajuan')->constrained('pengajuans')->cascadeOnDelete();
-            $table->unique(['id_dosen', 'id_pengajuan', 'peran_dosen'], 'plotting_assignment_unique');
+            $table->unique(['id_pengajuan', 'role'], 'plotting_assignment_unique');
+            $table->unique(['id_dosen', 'id_pengajuan'], 'plotting_dosen_pengajuan_unique');
         });
     }
 
