@@ -6,6 +6,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PlottingDosenPengajuanController;
+use App\Http\Controllers\KonsultasiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 Route::redirect('/', 'login');
@@ -27,6 +28,10 @@ Route::middleware('auth')->group(function (){
         ->name('mahasiswa.')
         ->group(function (){
             Route::get('/dashboard', [MahasiswaController::class, 'index'])->name('dashboard');
+            Route::get('/bimbingan', [KonsultasiController::class, 'studentIndex'])->name('bimbingan');
+            Route::post('/logbook', [KonsultasiController::class, 'store'])->name('logbook.store');
+            Route::patch('/logbook/{konsultasi}', [KonsultasiController::class, 'update'])->name('logbook.update');
+            Route::get('/logbook/{konsultasi}/draft', [KonsultasiController::class, 'download'])->name('logbook.download');
             Route::get('/pengajuan/jadwal', [JadwalController::class, 'create'])->name('pengajuan.jadwal');
             Route::post('/create/pengajuan/jadwal', [JadwalController::class, 'store'])->name('create.pengajuan.jadwal');
 
@@ -34,9 +39,15 @@ Route::middleware('auth')->group(function (){
     Route::middleware('Role:dosen')
         ->prefix('dosen')
         ->name('dosen.')
-        ->controller(DosenController::class)
         ->group(function (){
-            Route::get('/dashboard', 'index')->name('dashboard');
+            Route::get('/dashboard', [DosenController::class, 'index'])->name('dashboard');
+            Route::get('/bimbingan', [KonsultasiController::class, 'lecturerIndex'])->name('bimbingan');
+            Route::patch('/logbook/{konsultasi}/review', [KonsultasiController::class, 'review'])->name('logbook.review');
+            Route::patch('/logbook/{konsultasi}/presensi', [KonsultasiController::class, 'attendance'])->name('logbook.presensi');
+            Route::get('/logbook/{konsultasi}/draft', [KonsultasiController::class, 'download'])->name('logbook.download');
+            Route::get('/pengajuan', fn () => view('dosen.pengajuan'))->name('pengajuan');
+            Route::get('/jadwal', fn () => view('dosen.jadwal'))->name('jadwal');
+            Route::get('/profil', fn () => view('dosen.profil'))->name('profil');
         });
     Route::middleware('Role:admin')
         ->prefix('admin')
@@ -77,14 +88,5 @@ Route::middleware('auth')->group(function (){
     });
 
 
-
-// Route Khusus Role Dosen
-Route::prefix('dosen')->name('dosen.')->group(function () {
-    Route::get('/dashboard', fn() => view('dosen.dashboard'))->name('dashboard');
-    Route::get('/bimbingan', fn() => view('dosen.bimbingan'))->name('bimbingan');
-    Route::get('/pengajuan', fn() => view('dosen.pengajuan'))->name('pengajuan');
-    Route::get('/jadwal', fn() => view('dosen.jadwal'))->name('jadwal');
-    Route::get('/profil', fn() => view('dosen.profil'))->name('profil');
-});
 
 //require __DIR__.'/auth.php';

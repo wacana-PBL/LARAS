@@ -29,7 +29,8 @@
         <a class="dash-brand" href="#dashboard">LARAS</a>
         <nav class="dash-nav" aria-label="Navigasi dosen">
             <a class="dash-nav__link is-active" aria-current="page" href="#dashboard">Dashboard</a>
-            @foreach (['Bimbingan', 'Jadwal Sidang', 'Penilaian'] as $label)
+            <a class="dash-nav__link" href="{{ route('dosen.bimbingan') }}">Bimbingan</a>
+            @foreach (['Jadwal Sidang', 'Penilaian'] as $label)
                 <button class="dash-nav__link" type="button" disabled title="Modul belum tersedia">{{ $label }}</button>
             @endforeach
         </nav>
